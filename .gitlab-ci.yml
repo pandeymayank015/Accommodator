@@ -105,6 +105,8 @@ package:
 deploy:
   stage: deploy
   image: docker:latest
+  tags:
+    - Asdc
 #  services:
 #    - docker:dind
   environment:
