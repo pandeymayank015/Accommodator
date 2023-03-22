@@ -1,4 +1,138 @@
+#Working yml till deploy stage
 #stages:
+#  - build
+#  - package
+#  - deploy
+#
+#variables:
+#  DOCKER_DRIVER: overlay2
+#  DOCKER_TLS_CERTDIR: "/certs"
+#  DOCKER_HOST: "tcp://host.docker.internal:2375"
+#
+#build:
+#  stage: build
+#  image: maven:3.8.7
+#  tags:
+#    - Asdc
+#  only:
+#    - JWT_Backend_Integration
+#  services:
+#    - name: docker:dind
+#      alias: docker
+#  script:
+#    - echo "Maven build started"
+#    - mvn compile
+#package:
+#  stage: package
+#  image: maven:3.8.7
+#  script:
+#    - echo "Maven packaging started"
+#    - mvn clean package
+#  artifacts:
+#    paths:
+#      - target/*.jar
+#  only:
+#    - JWT_Backend_Integration
+#
+#deploy:
+#  stage: deploy
+#  image: docker:latest
+#  services:
+#    - docker:dind
+#  environment:
+#    name: development
+#    url: http://csci5308vm25.research.cs.dal.ca
+#  only:
+#    - JWT_Backend_Integration
+#  before_script:
+#    - apk update && apk add openssh-client
+#  script:
+#    - mkdir -p /root/.ssh
+#    - echo "CI_REGISTRY:" $CI_REGISTRY
+#    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > /root/.ssh/id_rsa
+#    - chmod 600 /root/.ssh/id_rsa
+#    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > /root/.ssh/config
+#    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+#    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG .
+#    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+#    - ssh deploy@${DEPLOY_SERVER} "docker login -u \"$CI_REGISTRY_USER\" -p \"$CI_REGISTRY_PASSWORD\" $CI_REGISTRY"
+#    - ssh deploy@${DEPLOY_SERVER} "docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+#    - ssh deploy@${DEPLOY_SERVER} "docker stop app_container || true"
+#    - ssh deploy@${DEPLOY_SERVER} "docker rm app_container || true"
+#    - ssh deploy@${DEPLOY_SERVER} "docker run --name app_container -d -p 8080:8080 --restart always $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+#
+
+
+
+stages:
+  - build
+  - package
+  - deploy
+
+variables:
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: "/certs"
+
+build:
+  stage: build
+  image: maven:3.8.7
+  tags:
+    - Asdc
+  only:
+    - JWT_Backend_Integration
+  services:
+    - name: docker:dind
+      alias: docker
+  script:
+    - echo "Maven build started"
+    - mvn compile
+
+package:
+  stage: package
+  image: maven:3.8.7
+  script:
+    - echo "Maven packaging started"
+    - mvn clean package
+  artifacts:
+    paths:
+      - target/*.jar
+  only:
+    - JWT_Backend_Integration
+
+deploy:
+  stage: deploy
+  image: docker:latest
+  services:
+    - docker:dind
+  environment:
+    name: development
+    url: http://csci5308vm25.research.cs.dal.ca
+  only:
+    - JWT_Backend_Integration
+  before_script:
+    - apk update && apk add openssh-client
+  script:
+    - mkdir -p /root/.ssh
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > /root/.ssh/id_rsa
+    - chmod 600 /root/.ssh/id_rsa
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > /root/.ssh/config
+    - docker login -u "$DOCKER_HUB_USER" -p "$DOCKER_HUB_PASSWORD"
+    - docker build -t $DOCKER_HUB_USER/$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG .
+    - docker push $DOCKER_HUB_USER/$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+    - ssh deploy@${DEPLOY_SERVER} "docker login -u \"$DOCKER_HUB_USER\" -p \"$DOCKER_HUB_PASSWORD\""
+    - ssh deploy@${DEPLOY_SERVER} "docker pull $DOCKER_HUB_USER/$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+    - ssh deploy@${DEPLOY_SERVER} "docker stop app_container || true"
+    - ssh deploy@${DEPLOY_SERVER} "docker rm app_container || true"
+    - ssh deploy@${DEPLOY_SERVER} "docker run --name app_container -d -p 8080:8080 --restart always $DOCKER_HUB_USER/$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+
+
+
+
+
+
+
+
+    #stages:
 #  - build
 #  - deploy
 #
@@ -42,27 +176,6 @@
 #    - ssh deploy@${DEPLOY_SERVER} "docker login -u \"$CI_REGISTRY_USER\" -p \"$CI_REGISTRY_PASSWORD\" $CI_REGISTRY"
 #    - ssh deploy@${DEPLOY_SERVER} "docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
 #    - ssh deploy@${DEPLOY_SERVER} "docker-compose -f /home/csci5308vm25/docker-compose.yml up -d --build"
-stages:
-  - build
-  - package
-  - deploy
-
-variables:
-  DOCKER_DRIVER: overlay2
-  DOCKER_TLS_CERTDIR: "/certs"
-  DOCKER_HOST: "tcp://host.docker.internal:2375"
-
-build:
-  stage: build
-  image: maven:3.8.7
-  tags:
-    - Asdc
-  only:
-    - JWT_Backend_Integration
-  services:
-    - name: docker:dind
-      alias: docker
-  script:
 
 
 #    - apt-get update
@@ -74,46 +187,7 @@ build:
 #    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
 #    - docker build --build-arg JAR_FILE=target/Accommodator-0.0.1-SNAPSHOT.jar -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG .
 #    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
-    - echo "Maven build started"
-    - mvn compile
-package:
-  stage: package
-  image: maven:3.8.7
-  script:
-    - echo "Maven packaging started"
-    - mvn clean package
-  artifacts:
-    paths:
-      - target/*.jar
-  only:
-    - JWT_Backend_Integration
 
-deploy:
-  stage: deploy
-  image: docker:latest
-  services:
-    - docker:dind
-  environment:
-    name: development
-    url: http://csci5308vm25.research.cs.dal.ca
-  only:
-    - JWT_Backend_Integration
-  before_script:
-    - apk update && apk add openssh-client
-  script:
-    - mkdir -p /root/.ssh
-    - echo "CI_REGISTRY:" $CI_REGISTRY
-    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > /root/.ssh/id_rsa
-    - chmod 600 /root/.ssh/id_rsa
-    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > /root/.ssh/config
-    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG .
-    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
-    - ssh deploy@${DEPLOY_SERVER} "docker login -u \"$CI_REGISTRY_USER\" -p \"$CI_REGISTRY_PASSWORD\" $CI_REGISTRY"
-    - ssh deploy@${DEPLOY_SERVER} "docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
-    - ssh deploy@${DEPLOY_SERVER} "docker stop app_container || true"
-    - ssh deploy@${DEPLOY_SERVER} "docker rm app_container || true"
-    - ssh deploy@${DEPLOY_SERVER} "docker run --name app_container -d -p 8080:8080 --restart always $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
 
 #deploy:
 #  stage: deploy
