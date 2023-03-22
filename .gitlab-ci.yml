@@ -50,6 +50,7 @@ stages:
 variables:
   DOCKER_DRIVER: overlay2
   DOCKER_TLS_CERTDIR: "/certs"
+  DOCKER_HOST: "tcp://host.docker.internal:2375"
 
 build:
   stage: build
