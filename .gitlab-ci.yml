@@ -44,6 +44,7 @@
 #    - ssh deploy@${DEPLOY_SERVER} "docker-compose -f /home/csci5308vm25/docker-compose.yml up -d --build"
 stages:
   - build
+  - package
   - deploy
 
 variables:
