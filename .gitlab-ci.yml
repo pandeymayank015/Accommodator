@@ -75,7 +75,7 @@ build:
 #    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
     - echo "Maven build started"
     - mvn compile
-package_job:
+package:
   stage: package
   image: maven:3.8.7
   script:
