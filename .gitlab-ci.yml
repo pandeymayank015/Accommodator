@@ -102,6 +102,7 @@ deploy:
     - apk update && apk add openssh-client
   script:
     - mkdir -p /root/.ssh
+    - echo "CI_REGISTRY:" $CI_REGISTRY
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > /root/.ssh/id_rsa
     - chmod 600 /root/.ssh/id_rsa
     - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > /root/.ssh/config
