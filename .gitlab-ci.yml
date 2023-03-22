@@ -72,7 +72,7 @@ stages:
 variables:
   DOCKER_DRIVER: overlay2
   DOCKER_TLS_CERTDIR: "/certs"
-  DOCKER_HOST: tcp://docker:2375
+  DOCKER_HOST: "unix:///var/run/docker.sock"
 
 build:
   stage: build
@@ -103,8 +103,8 @@ package:
 deploy:
   stage: deploy
   image: docker:latest
-  services:
-    - docker:dind
+#  services:
+#    - docker:dind
   environment:
     name: development
     url: http://csci5308vm25.research.cs.dal.ca
