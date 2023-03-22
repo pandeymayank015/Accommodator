@@ -85,7 +85,7 @@ package:
     paths:
       - target/*.jar
   only:
-    - main
+    - JWT_Backend_Integration
 
 deploy:
   stage: deploy
