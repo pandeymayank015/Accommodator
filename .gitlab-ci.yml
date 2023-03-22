@@ -10,14 +10,17 @@ variables:
 
 build:
   stage: build
-  image: docker:19.03.12
+  image: docker:stable
+  only:
+    - JWT_Backend_Integration
   services:
-    - name: docker:19.03.12-dind
+    - name: docker:stable-dind
       alias: docker
   script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
     - docker build --build-arg JAR_FILE=target/Accommodator-0.0.1-SNAPSHOT.jar -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG .
     - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+
 
 deploy:
   stage: deploy
