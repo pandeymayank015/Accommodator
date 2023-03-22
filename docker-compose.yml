@@ -1,7 +1,7 @@
-version: '3.8'
-services:
-  app:
-    image: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
-    ports:
-      - "8080:8080"
-    restart: always
+#version: '3.8'
+#services:
+#  app:
+#    image: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+#    ports:
+#      - "8080:8080"
+#    restart: always
