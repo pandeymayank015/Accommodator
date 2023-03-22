@@ -116,7 +116,7 @@ deploy:
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > /root/.ssh/id_rsa
     - chmod 600 /root/.ssh/id_rsa
     - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > /root/.ssh/config
-    - docker login -u "$DOCKER_HUB_USER" -p "$DOCKER_HUB_PASSWORD"
+    - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_USER" --password-stdin
     - docker build -t $DOCKER_HUB_USER/$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG .
     - docker push $DOCKER_HUB_USER/$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
     - ssh deploy@${DEPLOY_SERVER} "docker login -u \"$DOCKER_HUB_USER\" -p \"$DOCKER_HUB_PASSWORD\""
