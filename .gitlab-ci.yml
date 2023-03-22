@@ -91,6 +91,8 @@ build:
 package:
   stage: package
   image: maven:3.8.7
+  tags:
+    - Asdc
   script:
     - echo "Maven packaging started"
     - mvn clean package
