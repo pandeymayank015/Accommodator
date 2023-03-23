@@ -116,32 +116,21 @@ deploy:
     - JWT_Backend_Integration
   before_script:
     - apk update && apk add openssh-client
-#  script:
-#    - sudo mkdir -p /root/.ssh
-#    - echo "$SSH_PRIVATE_KEY" | sudo tr -d '\r' > /root/.ssh/id_rsa
-#    - sudo chmod 600 /root/.ssh/id_rsa
-#    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > /root/.ssh/config
-#    - env
-#    - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_USER" --password-stdin
-#    - docker build -t $DOCKER_HUB_USER/$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG .
-#    - docker push $DOCKER_HUB_USER/$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
-#    - eval $(ssh-agent -s)
-#    - ssh-add /root/.ssh/id_rsa
-#    - ssh csci5308vm25@${DEPLOY_SERVER} "docker login -u \"$DOCKER_HUB_USER\" -p \"$DOCKER_HUB_PASSWORD\""
-#    - ssh csci5308vm25@${DEPLOY_SERVER} "docker pull $DOCKER_HUB_USER/$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
-#    - ssh csci5308vm25@${DEPLOY_SERVER} "docker stop app_container || true"
-#    - ssh csci5308vm25@${DEPLOY_SERVER} "docker rm app_container || true"
-#    - ssh csci5308vm25@${DEPLOY_SERVER} "docker run --name app_container -d -p 8080:8080 --restart always $DOCKER_HUB_USER/$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
   script:
-      - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > id_rsa
-      - chmod 600 id_rsa
-      - ssh -o "StrictHostKeyChecking=no" -i id_rsa csci5308vm25@${DEPLOY_SERVER} "docker login -u \"$DOCKER_HUB_USER\" -p \"$DOCKER_HUB_PASSWORD\""
-      - docker build -t $DOCKER_HUB_USER/$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG .
-      - docker push $DOCKER_HUB_USER/$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
-      - ssh -o "StrictHostKeyChecking=no" -i id_rsa csci5308vm25@${DEPLOY_SERVER} "docker pull $DOCKER_HUB_USER/$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
-      - ssh -o "StrictHostKeyChecking=no" -i id_rsa csci5308vm25@${DEPLOY_SERVER} "docker stop app_container || true"
-      - ssh -o "StrictHostKeyChecking=no" -i id_rsa csci5308vm25@${DEPLOY_SERVER} "docker rm app_container || true"
-      - ssh -o "StrictHostKeyChecking=no" -i id_rsa csci5308vm25@${DEPLOY_SERVER} "docker run --name app_container -d -p 8080:8080 --restart always $DOCKER_HUB_USER/$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+    - echo "$SSH_PRIVATE_KEY" | sudo tr -d '\r' > /root/.ssh/id_rsa
+    - sudo chmod 600 /root/.ssh/id_rsa
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > /root/.ssh/config
+    - env
+    - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_USER" --password-stdin
+    - docker build -t $DOCKER_HUB_USER/$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG .
+    - docker push $DOCKER_HUB_USER/$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+    - eval $(ssh-agent -s)
+    - ssh-add /root/.ssh/id_rsa
+    - ssh csci5308vm25@${DEPLOY_SERVER} "docker login -u \"$DOCKER_HUB_USER\" -p \"$DOCKER_HUB_PASSWORD\""
+    - ssh csci5308vm25@${DEPLOY_SERVER} "docker pull $DOCKER_HUB_USER/$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+    - ssh csci5308vm25@${DEPLOY_SERVER} "docker stop app_container || true"
+    - ssh csci5308vm25@${DEPLOY_SERVER} "docker rm app_container || true"
+    - ssh csci5308vm25@${DEPLOY_SERVER} "docker run --name app_container -d -p 8080:8080 --restart always $DOCKER_HUB_USER/$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
 
 
 
