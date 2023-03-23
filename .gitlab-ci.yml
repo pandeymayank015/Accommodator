@@ -124,8 +124,8 @@ deploy:
     - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_USER" --password-stdin
     - docker build -t $DOCKER_HUB_USER/$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG .
     - docker push $DOCKER_HUB_USER/$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
-    - eval $(ssh-agent -s)
-    - ssh-add /root/.ssh/id_rsa
+#    - eval $(ssh-agent -s)
+#    - ssh-add /root/.ssh/id_rsa
     - ssh csci5308vm25@${DEPLOY_SERVER} "docker login -u \"$DOCKER_HUB_USER\" -p \"$DOCKER_HUB_PASSWORD\""
     - ssh csci5308vm25@${DEPLOY_SERVER} "docker pull $DOCKER_HUB_USER/$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
     - ssh csci5308vm25@${DEPLOY_SERVER} "docker stop app_container || true"
