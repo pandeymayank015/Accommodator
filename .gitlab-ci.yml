@@ -117,9 +117,9 @@ deploy:
   before_script:
     - apk update && apk add openssh-client
   script:
-    - mkdir -p /root/.ssh
-    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > /root/.ssh/id_rsa
-    - chmod 600 /root/.ssh/id_rsa
+    - sudo mkdir -p /root/.ssh
+    - echo "$SSH_PRIVATE_KEY" | sudo tr -d '\r' > /root/.ssh/id_rsa
+    - sudo chmod 600 /root/.ssh/id_rsa
     - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > /root/.ssh/config
     - env
     - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_USER" --password-stdin
