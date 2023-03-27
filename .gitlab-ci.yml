@@ -118,7 +118,7 @@ deploy:
     - apk update && apk add openssh-client
     - mkdir -p /root
     - mkdir -p /root/.ssh
-    - touch ~/root/.ssh/known_hosts
+    - touch ~/.ssh/known_hosts
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > /root/.ssh/id_rsa
     - chmod 600 /root/.ssh/id_rsa
     - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > /root/.ssh/config
