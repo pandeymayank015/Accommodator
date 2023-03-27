@@ -120,7 +120,7 @@ deploy:
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > /.ssh/id_rsa
     - chmod 600 /.ssh/id_rsa
     - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > /.ssh/config
-    - ssh-keyscan ${DEPLOY_SERVER} >> ~/.ssh/known_hosts
+    - ssh-keyscan ${DEPLOY_SERVER} >> /.ssh/known_hosts
   script:
 #    - echo "$SSH_PRIVATE_KEY" | sudo tr -d '\r' > /root/.ssh/id_rsa
 #    - sudo chmod 600 /root/.ssh/id_rsa
