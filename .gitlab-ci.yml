@@ -115,7 +115,7 @@ deploy:
   only:
     - JWT_Backend_Integration
   before_script:
-    - apk update && apk add openssh-client
+    - apk update && apk add openssh-client openssh-keygen
     - mkdir -p /root
     - mkdir -p /root/.ssh
     - touch ~/.ssh/known_hosts
