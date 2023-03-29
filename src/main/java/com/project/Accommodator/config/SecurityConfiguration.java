@@ -37,6 +37,8 @@ public class SecurityConfiguration {
         http
                 .csrf()
                 .disable()
+                .cors()
+                .disable()
                 .authorizeHttpRequests()
                 .requestMatchers("/student/login", "/owner/login")
                 .permitAll()

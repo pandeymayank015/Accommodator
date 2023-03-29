@@ -1,9 +1,10 @@
 package com.project.Accommodator.service;
 import com.project.Accommodator.model.Favorite;
+import com.project.Accommodator.model.Posting;
 
 public interface FavoriteService {
     Favorite createFavorite(Favorite Favorite);
 
-    Favorite getFavoriteById(int id);
+    Iterable<Posting> getFavoriteById(int id);
 
 }

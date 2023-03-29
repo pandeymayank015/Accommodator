@@ -1,12 +1,12 @@
 package com.project.Accommodator.controller;
 import com.project.Accommodator.model.Posting;
-import com.project.Accommodator.model.Student;
 import com.project.Accommodator.service.PostingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/posting")
+@CrossOrigin(origins = "http://localhost:3000")
 public class PostingController {
     @Autowired
     PostingService PostingService;

@@ -1,6 +1,7 @@
 package com.project.Accommodator.service.implementation;
 
 import com.project.Accommodator.model.Favorite;
+import com.project.Accommodator.model.Posting;
 import com.project.Accommodator.service.FavoriteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,8 +22,8 @@ public class FavoriteServiceImplementation implements FavoriteService {
     }
 
     @Override
-    public Favorite getFavoriteById(int id) {
-        Favorite Favorite = FavoriteRepository.findById(id).orElse(null);
-        return Favorite;
+    public Iterable<Posting> getFavoriteById(int id) {
+        Iterable<Posting> posts = FavoriteRepository.findFavoritesById(id);
+        return posts;
     }
 }

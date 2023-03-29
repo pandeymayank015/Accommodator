@@ -1,5 +1,6 @@
 package com.project.Accommodator.controller;
 import com.project.Accommodator.model.Favorite;
+import com.project.Accommodator.model.Posting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,9 +10,8 @@ public class FavoriteController {
     @Autowired
     com.project.Accommodator.service.FavoriteService FavoriteService;
     @CrossOrigin
-
     @GetMapping("/get/{id}")
-    public Favorite getFavoriteById(@PathVariable("id") int id) {
+    public Iterable<Posting> getFavoriteById(@PathVariable("id") int id) {
         return FavoriteService.getFavoriteById(id);
     }
     @CrossOrigin
