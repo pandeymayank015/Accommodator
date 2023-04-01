@@ -31,10 +31,6 @@ function ShowPosting() {
             });
     }, []);
 
-         function addFavorites(postId) {
-              const user = JSON.parse(localStorage.getItem('user'));
-              apiClient.post(`http://localhost:8080/favorite/create`,{studentId: user.id,postId: postId})
-          }
 
 
   function addFavorites(postId) {
@@ -47,19 +43,23 @@ function ShowPosting() {
 
   }
 
- function handleFavoriteClick(postId, index) {
-     const newPosts = [...posts];
-     newPosts[index] = {
-       ...newPosts[index],
-       isFavorite: !newPosts[index].isFavorite
-     };
-     setPosts(newPosts);
-     if (newPosts[index].isFavorite) {
-       addFavorites(postId);
-     } else {
-       removeFavorites(postId);
-     }
-   }
+    function addFavorites(postId,index) {
+         const newPosts = [...posts];
+         newPosts[index] = {
+           ...newPosts[index],
+           isFavorite: !newPosts[index].isFavorite
+         };
+         setPosts(newPosts);
+         if (newPosts[index].isFavorite) {
+           const user = JSON.parse(localStorage.getItem('user'));
+                  apiClient.post(`http://localhost:8080/favorite/create`,{studentId: user.id,postId: postId})
+         } else {
+          // removeFavorites(postId);
+         }
+
+
+    }
+
 
     function handleConnectClick(email) {
         console.log('Contact with owner on ', email);
@@ -117,7 +117,7 @@ function ShowPosting() {
                                         cards.push(
                                             <Col key={i}>
                                                 <Card>
-                                                 <button className={isCardFavorite ? "favorite-button active" : "favorite-button"} onClick={() => handleFavoriteClick(post.id, i)}>
+                                                 <button className={isCardFavorite ? "favorite-button active" : "favorite-button"} onClick={() => addFavorites(post.postId,i)}>
                                                                                      <FiHeart className={isCardFavorite ? "icon active" : "icon"} />
                                                                                  </button>
                                                     <Card.Img variant="top" src={post.image} />
