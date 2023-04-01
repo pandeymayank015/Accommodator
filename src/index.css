@@ -5,6 +5,35 @@
 input[type="radio"]{
   margin: 0 10px 0 10px;
 }
+.favorite-button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  display: flex;
+  justify-content: right;
+  align-items: right;
+}
+
+.favorite-button.active {
+  transform: scale(1.1);
+}
+
+.favorite-button:focus {
+  outline: none;
+}
+
+.icon {
+  color: #ccc;
+  font-size: 2rem;
+  transition: transform 0.2s ease;
+}
+
+.icon.active {
+  color: red;
+  transform: scale(1.2);
+}
+
 body {
   background: linear-gradient(to bottom, #1C8EF9, #2FEBF8);
   height: 100vh;

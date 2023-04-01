@@ -2,8 +2,12 @@ import React from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import axios from 'axios';
 import apiClient from './apiClient';
-
+import { useState } from 'react';
+import { FiHeart } from 'react-icons/fi';
 function ShowPosting() {
+
+
+
 
     const [posts, setPosts] = React.useState([]);
 
@@ -27,19 +31,42 @@ function ShowPosting() {
             });
     }, []);
 
+         function addFavorites(postId) {
+              const user = JSON.parse(localStorage.getItem('user'));
+              apiClient.post(`http://localhost:8080/favorite/create`,{studentId: user.id,postId: postId})
+          }
+
+
+  function addFavorites(postId) {
+    const user = JSON.parse(localStorage.getItem('user'));
+         apiClient.post(`http://localhost:8080/favorite/create`,{studentId: user.id,postId: postId})
+  }
+
+  function removeFavorites(postId) {
+    const user = JSON.parse(localStorage.getItem('user'));
+
+  }
+
+ function handleFavoriteClick(postId, index) {
+     const newPosts = [...posts];
+     newPosts[index] = {
+       ...newPosts[index],
+       isFavorite: !newPosts[index].isFavorite
+     };
+     setPosts(newPosts);
+     if (newPosts[index].isFavorite) {
+       addFavorites(postId);
+     } else {
+       removeFavorites(postId);
+     }
+   }
+
     function handleConnectClick(email) {
         console.log('Contact with owner on ', email);
     }
 
-    function addFavorites(postId) {
-        const user = JSON.parse(localStorage.getItem('user'));
-        apiClient.post(`http://localhost:8080/favorite/create`,{studentId: user.id,postId: postId})
-    }
-    // function addFavorites(postId) {
-    //     const user = JSON.parse(localStorage.getItem('user'));
-    //     apiClient.post(`http://localhost:8080/favorite/create?studentId=${user.id}&postId=${postId}`)
-    // }
-    
+
+
 
     return (
         <div className="auth-wrapper">
@@ -86,12 +113,13 @@ function ShowPosting() {
                                     const cards = [];
                                     for (let i = index; i < index + 3 && i < posts.length; i++) {
                                         const post = posts[i];
+                                           const isCardFavorite = post.isFavorite || false;
                                         cards.push(
                                             <Col key={i}>
                                                 <Card>
-                                                    <button className="favorite-button" onClick={() => addFavorites(post.postId)}>
-                                                        <i className="fa fa-heart"></i> Add to favorites
-                                                    </button>
+                                                 <button className={isCardFavorite ? "favorite-button active" : "favorite-button"} onClick={() => handleFavoriteClick(post.id, i)}>
+                                                                                     <FiHeart className={isCardFavorite ? "icon active" : "icon"} />
+                                                                                 </button>
                                                     <Card.Img variant="top" src={post.image} />
                                                     <Card.Body>
                                                         <Card.Title>{post.title}</Card.Title>

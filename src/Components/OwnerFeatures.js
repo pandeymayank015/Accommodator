@@ -31,6 +31,15 @@ function Features() {
             buttonLink: '/ShowPosting',
 
         },
+                {
+                    id: 4,
+                    title: 'See favorites',
+                    description: 'Click to see postings added to your favorites',
+                    image:'https://cdn.thememylogin.com/uploads/edd/2019/03/favorites.png',
+                    buttonLabel: 'Click here',
+                    buttonLink: '/ShowFavorites',
+
+                },
     ];
 
     return (
