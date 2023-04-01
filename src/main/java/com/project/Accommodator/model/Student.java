@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 
 @Data
@@ -34,8 +35,11 @@ public class Student implements UserDetails {
     private Long contactNo;
     private int isRevoked;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "user")
     private List<StudentToken> tokens;
+
+//    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    private Set<Favorite> favorites;
 
     public Student() {
     }
@@ -50,6 +54,19 @@ public class Student implements UserDetails {
         this.isApproved = isApproved;
         this.contactNo = contactNo;
         this.isRevoked = isRevoked;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "studentId=" + studentId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", isApproved=" + isApproved +
+                ", contactNo=" + contactNo +
+                ", isRevoked=" + isRevoked +
+                '}';
     }
 
     public int getStudentId() {

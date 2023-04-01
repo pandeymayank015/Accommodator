@@ -38,9 +38,11 @@ public class OwnerAuthenticationService {
     var savedUser = repository.save(user);
     var jwtToken = jwtService.generateToken(user);
     saveUserToken(savedUser, jwtToken);
+    OwnerDto ownerDto = new OwnerDto(savedUser.getOwnerId(), savedUser.getEmail(), savedUser.getFirstName(), savedUser.getLastName(), savedUser.getContactNo(), savedUser.getOwnerType());
     return OwnerAuthenticationResponse.builder()
-        .token(jwtToken)
-        .build();
+            .token(jwtToken)
+            .owner(ownerDto)
+            .build();
   }
 
   public OwnerAuthenticationResponse authenticate(OwnerAuthenticationRequest request) {
@@ -55,9 +57,11 @@ public class OwnerAuthenticationService {
     var jwtToken = jwtService.generateToken(user);
     revokeAllUserTokens(user);
     saveUserToken(user, jwtToken);
+    OwnerDto ownerDto = new OwnerDto(user.getOwnerId(), user.getEmail(), user.getFirstName(), user.getLastName(), user.getContactNo(), user.getOwnerType());
     return OwnerAuthenticationResponse.builder()
-        .token(jwtToken)
-        .build();
+            .token(jwtToken)
+            .owner(ownerDto)
+            .build();
   }
 
   private void saveUserToken(Owner user, String jwtToken) {

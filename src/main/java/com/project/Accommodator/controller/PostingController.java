@@ -4,10 +4,11 @@ import com.project.Accommodator.service.PostingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/posting")
-@CrossOrigin(origins = "http://localhost:3000")
-public class PostingController {
+
+public class    PostingController {
     @Autowired
     PostingService PostingService;
     @CrossOrigin

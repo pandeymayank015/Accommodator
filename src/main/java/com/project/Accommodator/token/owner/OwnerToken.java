@@ -32,4 +32,16 @@ public class OwnerToken {
   @ManyToOne
   @JoinColumn(name = "owner_Id")
   public Owner user;
+
+  @Override
+  public String toString() {
+    return "OwnerToken{" +
+            "id=" + id +
+            ", token='" + token + '\'' +
+            ", tokenType=" + tokenType +
+            ", revoked=" + revoked +
+            ", expired=" + expired +
+            '}';
+  }
+
 }

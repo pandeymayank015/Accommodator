@@ -29,7 +29,7 @@ public class Owner implements UserDetails {
     private String ownerType;
     private String password;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "user")
     private List<OwnerToken> tokens;
 
     public Owner(Integer ownerId, String email, String firstName, String lastName, String contactNo, String ownerType, String password) {
@@ -41,6 +41,19 @@ public class Owner implements UserDetails {
         this.ownerType = ownerType;
         this.password = password;
     }
+
+    @Override
+    public String toString() {
+        return "Owner{" +
+                "ownerId=" + ownerId +
+                ", email='" + email + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", contactNo='" + contactNo + '\'' +
+                ", ownerType='" + ownerType + '\'' +
+                '}';
+    }
+
 
     public Integer getOwnerId() {
         return ownerId;

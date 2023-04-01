@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/studentpref")
 public class StudentPreferencesController {
@@ -24,7 +25,7 @@ public class StudentPreferencesController {
         @PostMapping("/match")
         public List<Posting> matchOwnerPreferences(@RequestParam("university") String university,
                                                    @RequestParam("foodPreference") String foodPreference,
-                                                   @RequestParam("isSmoking") String isSmoking,
+                                                    @RequestParam("isSmoking") String isSmoking,
                                                    @RequestParam("isDrinking") String isDrinking,
                                                    @RequestParam("livingSpace") String livingSpace,
                                                    @RequestParam("studyEnvironment") String studyEnvironment,

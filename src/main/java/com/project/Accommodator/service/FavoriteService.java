@@ -8,3 +8,11 @@ public interface FavoriteService {
     Iterable<Posting> getFavoriteById(int id);
 
 }
+//package com.project.Accommodator.service;
+//import com.project.Accommodator.model.Favorite;
+//import com.project.Accommodator.model.Posting;
+//
+//public interface FavoriteService {
+//    Favorite createFavorite(int studentId, int postId);
+//    Iterable<Posting> getFavoriteById(int id);
+//}

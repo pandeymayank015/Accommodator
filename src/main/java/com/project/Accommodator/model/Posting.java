@@ -1,5 +1,6 @@
 package com.project.Accommodator.model;
 
+import java.util.Set;
 import jakarta.persistence.*;
 
 @Entity
@@ -18,6 +19,9 @@ public class Posting {
     private String pincode;
     private String email;
     private Integer ownerId;
+
+//    @OneToMany(mappedBy = "posting", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    private Set<Favorite> favorites;
 
     public Posting() {
     }

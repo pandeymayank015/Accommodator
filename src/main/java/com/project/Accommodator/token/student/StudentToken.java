@@ -32,4 +32,16 @@ public class StudentToken {
   @ManyToOne
   @JoinColumn(name = "student_Id")
   public Student user;
+
+  @Override
+  public String toString() {
+    return "StudentToken{" +
+            "id=" + id +
+            ", token='" + token + '\'' +
+            ", tokenType=" + tokenType +
+            ", revoked=" + revoked +
+            ", expired=" + expired +
+            '}';
+  }
+
 }

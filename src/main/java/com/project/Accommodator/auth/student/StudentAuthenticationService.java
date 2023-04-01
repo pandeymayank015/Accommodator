@@ -65,8 +65,12 @@ public class StudentAuthenticationService {
     var savedUser = repository.save(user);
     var jwtToken = jwtService.generateToken(user);
     saveUserToken(savedUser, jwtToken);
+
+
+    StudentDto studentDto = new StudentDto(savedUser.getStudentId(), savedUser.getFirstName(), savedUser.getLastName(), savedUser.getEmail(), savedUser.getContactNo());
     return StudentAuthenticationResponse.builder()
             .token(jwtToken)
+            .student(studentDto)
             .build();
   }
 
@@ -82,9 +86,11 @@ public class StudentAuthenticationService {
     var jwtToken = jwtService.generateToken(user);
     revokeAllUserTokens(user);
     saveUserToken(user, jwtToken);
+    StudentDto studentDto = new StudentDto(user.getStudentId(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getContactNo());
     return StudentAuthenticationResponse.builder()
-        .token(jwtToken)
-        .build();
+            .token(jwtToken)
+            .student(studentDto)
+            .build();
   }
 
   private void saveUserToken(Student user, String jwtToken) {

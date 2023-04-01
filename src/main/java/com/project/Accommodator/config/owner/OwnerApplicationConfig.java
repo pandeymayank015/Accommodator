@@ -21,7 +21,7 @@ public class OwnerApplicationConfig {
   private final OwnerRepository repository;
 
   @Bean
-  public UserDetailsService userDetailsService() {
+  public UserDetailsService ownerUserDetailsService() {
     return username -> repository.findByEmail(username)
         .orElseThrow(() -> new UsernameNotFoundException("User not found"));
   }
@@ -29,7 +29,7 @@ public class OwnerApplicationConfig {
   @Bean
   public AuthenticationProvider authenticationProvider() {
     DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-    authProvider.setUserDetailsService(userDetailsService());
+    authProvider.setUserDetailsService(ownerUserDetailsService());
     authProvider.setPasswordEncoder(passwordEncoder());
     return authProvider;
   }
