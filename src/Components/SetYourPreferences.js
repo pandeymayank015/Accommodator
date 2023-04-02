@@ -100,7 +100,7 @@ function SetYourPreferences() {
         setMultiSelectedOptions(options);
     };
     const handleSubmit = (event) => {
-        const user = JSON.parse(localStorage.getItem('regUser'));
+        const user = JSON.parse(localStorage.getItem('user'));
         event.preventDefault();
         const data = {
             university: selectedOption1.value,
