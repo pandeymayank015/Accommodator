@@ -82,7 +82,7 @@ apiClient.post('http://localhost:8080/student/create', formData, {
     console.log(response.data);
     form.reset();
     localStorage.setItem('authToken', response.data.token);
-    localStorage.setItem('regUser',JSON.stringify(response.data));
+    localStorage.setItem('regUser',JSON.stringify(response.data.student));
     alert('Student Successfully registered!');
     window.location.href = '/SetYourPreferences';
 
@@ -105,7 +105,7 @@ apiClient.post('http://localhost:8080/student/create', formData, {
                                     console.log(response.data);
                                     form.reset();
                                     localStorage.setItem('authToken', response.data.token);
-                                    localStorage.setItem('regUser',JSON.stringify(response.data));
+                                    localStorage.setItem('regUser',JSON.stringify(response.data.owner));
                                     alert('Owner Successfully registered!');
                                     window.location.href = '/SetPreferencesOwner';
                                 })
