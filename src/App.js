@@ -18,8 +18,8 @@ import DisplayPostingsAfterPref from "./Components/DisplayPostingsAfterPref";
 import AdminLogin from "./Components/AdminLogin";
 import ShowFavorites from "./Components/ShowFavorites";
 import OwnerFeatures from "./Components/OwnerFeatures";
-//import Home from './Components/Posting'
 import GoogleMap from './Components/GoogleMap';
+import ShowOwnerPosting from './Components/ShowOwnerPosting';
 function App() {
     return (
         <Router>
@@ -78,6 +78,7 @@ function App() {
                     <Route path="/AdminLogin" element={<AdminLogin />} />
                     <Route path="/ShowFavorites" element={<ShowFavorites />} />
                     <Route path="/GoogleMap" element={<GoogleMap />} />
+                    <Route path="/ShowOwnerPosting" element={<ShowOwnerPosting />} />
                 </Routes>
                 <div>
                     <br/>

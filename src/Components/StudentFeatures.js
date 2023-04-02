@@ -43,6 +43,7 @@ function Features() {
     ];
 
     return (
+        
         <div className="auth-wrapper">
             <div className="form-container">
 

@@ -28,7 +28,7 @@ function Features() {
             description: 'Click to see all the available listings',
             image:'https://cdn.w600.comps.canstockphoto.com/new-listing-stamp-eps-vector_csp32695784.jpg',
             buttonLabel: 'Click here',
-            buttonLink: '/ShowPosting',
+            buttonLink: '/ShowOwnerPosting',
 
         },
     ];
