@@ -28,7 +28,7 @@ function Features() {
             description: 'Click to see available listings on a map',
             image:'https://media.istockphoto.com/id/176022505/photo/halifax-nova-scotia-canada-on-a-map.jpg?s=1024x1024&w=is&k=20&c=03_5xhwEj6UvrQeHtOqrjyhlP_zHGudJDMyLtDIOfcA=',
             buttonLabel: 'Click here',
-            buttonLink: '',
+            buttonLink: '/GoogleMap',
 
         },
         {
