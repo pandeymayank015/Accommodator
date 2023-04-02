@@ -76,7 +76,7 @@ const fileInput = document.querySelector('#offerLetter');
 const file = fileInput.files[0];
 formData.append('offerLetter', file);
 
-apiClient.post('http://localhost:8080/student/create', formData, {
+axios.post('http://localhost:8080/student/create', formData, {
 })
 .then((response) => {
     console.log(response.data);
@@ -93,7 +93,7 @@ apiClient.post('http://localhost:8080/student/create', formData, {
 
                 
             } else {
-                            apiClient.post('http://localhost:8080/owner/create', {
+                            axios.post('http://localhost:8080/owner/create', {
                                 firstName: data.firstname,
                                 lastName: data.lastname,
                                 email: data.email,
