@@ -110,7 +110,7 @@ function SetYourPreferences() {
             livingPref: selectedOption5.value,
             studyPref: selectedOption6.value,
             nationality: selectedOption7.value,
-            studentId: user.studentId
+            studentId: user.id
           };
           
           apiClient.post('http://localhost:8080/studentpref/create', data)
