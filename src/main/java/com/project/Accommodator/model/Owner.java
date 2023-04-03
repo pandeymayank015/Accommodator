@@ -42,6 +42,10 @@ public class Owner implements UserDetails {
         this.password = password;
     }
 
+    public Owner(int id) {
+        this.ownerId = id;
+    }
+
     @Override
     public String toString() {
         return "Owner{" +

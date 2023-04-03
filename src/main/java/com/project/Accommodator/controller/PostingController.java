@@ -14,7 +14,7 @@ public class    PostingController {
     @CrossOrigin
 
     @GetMapping("/get/{id}")
-    public Posting getPostingById(@PathVariable("id") int id) {
+    public Iterable<Posting> getPostingById(@PathVariable("id") int id) {
         return PostingService.getPostingById(id);
     }
     @CrossOrigin

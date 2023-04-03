@@ -31,6 +31,10 @@ public class OwnerPreferences {
         this.ownerId = ownerId;
     }
 
+    public OwnerPreferences(int id) {
+        this.ownerPreferencesId = id;
+    }
+
     public int getOwnerPreferencesId() {
         return ownerPreferencesId;
     }

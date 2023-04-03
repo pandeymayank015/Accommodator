@@ -23,7 +23,7 @@ public class StudentPreferencesController {
         }
         @CrossOrigin
         @PostMapping("/match")
-        public List<Posting> matchOwnerPreferences(@RequestParam("university") String university,
+        public List<Posting> matchStudentPreferences(@RequestParam("university") String university,
                                                    @RequestParam("foodPreference") String foodPreference,
                                                     @RequestParam("isSmoking") String isSmoking,
                                                    @RequestParam("isDrinking") String isDrinking,

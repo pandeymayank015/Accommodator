@@ -32,6 +32,10 @@ public class StudentPreferences {
         this.studentId = studentId;
     }
 
+    public StudentPreferences(int id) {
+        this.studentPreferencesId = id;
+    }
+
     public int getStudentPreferencesId() {
         return studentPreferencesId;
     }

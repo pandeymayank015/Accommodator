@@ -22,8 +22,8 @@ public class PostingServiceImplementation implements PostingService {
     }
 
     @Override
-    public Posting getPostingById(int id) {
-        Posting Posting = PostingRepository.findById(id).orElse(null);
+    public Iterable<Posting> getPostingById(int id) {
+        Iterable<Posting> Posting = PostingRepository.getPostingById(id);
         return Posting;
     }
     @Override
