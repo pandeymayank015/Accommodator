@@ -68,7 +68,7 @@ class AddPost extends React.Component {
 
                     apiClient.post('http://localhost:8080/posting/create', postingData).then((response) => {
                             if (response.status === 200) {
-                                window.location.href = '/Features';
+                                window.location.href = '/OwnerFeatures';
                             } else {
                                 console.error('Post creation failed:', response.data.message);
                             }
@@ -159,8 +159,18 @@ class AddPost extends React.Component {
                                     className="form-control"
                                     id="pincode"
                                     name="pincode"
-                                    maxLength="6"
-                                    onChange={this.handleChange}
+                                    pattern="[a-zA-Z0-9]{3} [a-zA-Z0-9]{3}"
+                                    title="Please enter pincode in format 'XXX XXX'"
+                                    maxLength="7"
+                                    onChange={e => {
+                                        const value = e.target.value.toUpperCase();
+                                        if (value.length === 3 && !value.includes(' ')) {
+                                            this.setState({ pincode: value + ' ' });
+                                        } else {
+                                            this.setState({ pincode: value });
+                                        }
+                                    }}
+                                    value={this.state.pincode}
                                     required
                                 />
                             </div>

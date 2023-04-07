@@ -116,7 +116,7 @@ function SetYourPreferences() {
           apiClient.post('http://localhost:8080/studentpref/create', data)
             .then(response => {
               console.log(response.data);
-              window.location.href = '/StudentFeatures';
+              window.location.href = '/Login';
             })
             .catch(error => {
               console.error(error);

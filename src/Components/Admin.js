@@ -7,6 +7,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import Alert from 'react-bootstrap/Alert';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import BootstrapTable from 'react-bootstrap-table-next';
+import apiClient from './apiClient';
 
 function DataTable() {
     const [data, setData] = useState([]);
@@ -18,7 +19,7 @@ function DataTable() {
     }, []);
 
     function loadData() {
-        axios
+        apiClient
             .get('http://localhost:8080/student/get/all')
             .then((response) => {
                 setData(response.data);
@@ -31,7 +32,7 @@ function DataTable() {
     }
 
     function handleApprove(studentId) {
-        axios
+        apiClient
             .put(`http://localhost:8080/admin/approve/${studentId}`, { status: 'approved' })
             .then((response) => {
                 loadData(); // Reload data after action
@@ -42,7 +43,7 @@ function DataTable() {
     }
 
     function handleReject(studentId) {
-        axios
+        apiClient
             .put(`http://localhost:8080/admin/reject/${studentId}`, { status: 'rejected' })
             .then((response) => {
                 loadData(); // Reload data after action
