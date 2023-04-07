@@ -116,7 +116,7 @@ function SetPreferencesOwner() {
           apiClient.post('http://localhost:8080/ownerpref/create', data)
             .then(response => {
               console.log(response.data);
-              window.location.href = '/Login';
+              window.location.href = '/sign-up';
             })
             .catch(error => {
               console.error(error);

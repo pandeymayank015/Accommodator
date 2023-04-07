@@ -31,7 +31,7 @@ const MapComponent = ({ onClose }) => {
 
                 // Initialize Google Maps API
                 const googleMapsScript = document.createElement('script');
-                googleMapsScript.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBd_a4RP34XxbMuYLN21frg3Tb2RNfylrU&callback=initMap`;
+                googleMapsScript.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyD8GED_UGjPTaqX1UcI957lovSsquUUSPo&callback=initMap`;
                 googleMapsScript.async = true;
                 googleMapsScript.defer = true;
                 document.head.appendChild(googleMapsScript);
