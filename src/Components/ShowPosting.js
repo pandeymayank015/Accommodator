@@ -10,7 +10,7 @@ function ShowPosting() {
 
 
     const [posts, setPosts] = React.useState([]);
-
+    const [originalPosts, setOriginalPosts] = React.useState([]);
     React.useEffect(() => {
         apiClient.get('http://localhost:8080/posting/get/all', {
             image: posts.image,
@@ -24,6 +24,7 @@ function ShowPosting() {
         })
             .then(response => {
                 setPosts(response.data);
+                setOriginalPosts(response.data);
                 console.log(response.data);
             })
             .catch(error => {
@@ -70,6 +71,40 @@ function ShowPosting() {
 
     }
 
+    function handleFilterSubmit(event) {
+        event.preventDefault();
+        const rent = event.target.rent.value;
+        const category = event.target.category.value;
+        const zip = event.target.zip.value;
+    
+        const filteredPosts = originalPosts.filter(post => {
+          // Filter by rent
+          if (rent && Number(post.rent) > Number(rent)) {
+            return false;
+          }
+    
+          // Filter by category
+          if (category && post.category !== category) {
+            return false;
+          } else if (category !== "" && post.category === "") {
+            return false;
+          }
+    
+          // Filter by zip
+          if (zip && post.pincode !== zip) {
+            return false;
+          } else if (zip !== "" && post.pincode === "") {
+            return false;
+          }
+    
+          return true;
+        });
+    
+        setPosts(filteredPosts);
+        console.log(filteredPosts);
+      }
+    
+    
     return (
         <div className="auth-wrapper">
             <div className="form-container">
@@ -78,7 +113,7 @@ function ShowPosting() {
                 <div className="col-md-3">
                     <div className="card p-3">
                         <h2 className="text-center text-uppercase text-BLACK mb-4">Filter Properties</h2>
-                        <form>
+                        <form onSubmit={handleFilterSubmit}>
                             <div className="form-group">
                                 <label htmlFor="rent">Rent:</label>
                                 <input type="range" min="1" max="10000" className="form-control-range" id="rent" name="rent" onInput={(event) => {document.getElementById("rent-value").innerHTML = event.target.value}} />
@@ -92,15 +127,15 @@ function ShowPosting() {
                                 <label htmlFor="category">Category:</label>
                                 <select className="form-control" id="category" name="category">
                                     <option value="">Select Lease/ Roommate</option>
-                                    <option value="Lease">Lease</option>
-                                    <option value="Roommate">Roommate</option>
+                                    <option value="lease">Lease</option>
+                                    <option value="roommate">Roommate</option>
                                 </select>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="zip">Preffered zip code:</label>
                                 <input type="text" className="form-control" id="zip" name="zip" />
                             </div>
-                            <button type="submit" className="btn btn-primary">Filter</button>
+                            <button type="submit"  className="btn btn-primary">Filter</button>
                         </form>
 
                     </div>

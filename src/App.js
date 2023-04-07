@@ -20,46 +20,78 @@ import ShowFavorites from "./Components/ShowFavorites";
 import OwnerFeatures from "./Components/OwnerFeatures";
 import GoogleMap from './Components/GoogleMap';
 import ShowOwnerPosting from './Components/ShowOwnerPosting';
+import apiClient from './Components/apiClient';
+
 function App() {
+    
+    const user = JSON.parse(localStorage.getItem('user'));
+    const handleLogout = () => {
+        localStorage.removeItem('user');
+        if(user.hasOwnProperty('id')){
+            apiClient.post('http://localhost:8080/student/logout');
+        }
+        else{
+            apiClient.post('http://localhost:8080/owner/logout');
+        }
+        window.location.href="/";
+      };
+      
+
     return (
         <Router>
             <br/>
             <br/>
             <div className="App">
-                <nav className="navbar navbar-expand-lg navbar-light fixed-top">
-                    <div className="container">
-                        <Link className="navbar-brand" to={'/'}>
-                            <img src="https://www.freepnglogos.com/uploads/logo-home-png/house-logo-design-vector-real-estate-logo-photos-25.png" style={{ width: '70px', height: '70px' }} />
-                            ACCOMMODATOR
-                        </Link>
-                        <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-                            <ul className="navbar-nav ml-auto">
-                                <li className="nav-item">
-                                    <Link className="nav-link" to={'/sign-up'}>
-                                        Login
-                                    </Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link" to={'/sign-in'}>
-                                        Sign up
-                                    </Link>
-                                </li>
+            <nav className="navbar navbar-expand-lg navbar-light fixed-top">
+  <div className="container">
+    <Link className="navbar-brand" to={'/'}>
+      <img src="https://www.freepnglogos.com/uploads/logo-home-png/house-logo-design-vector-real-estate-logo-photos-25.png" style={{ width: '70px', height: '70px' }} />
+      ACCOMMODATOR
+    </Link>
+    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span className="navbar-toggler-icon"></span>
+    </button>
+    <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul className="navbar-nav ml-auto">
+        {user && (user.hasOwnProperty('id') || user.hasOwnProperty('ownerId')) ? (
+          <li className="nav-item">
+            <Link className="nav-link" to={'/'} onClick={handleLogout}>
+              Logout
+            </Link>
+          </li>
+        ) : (
+          <>
+            <li className="nav-item">
+              <Link className="nav-link" to={'/sign-up'}>
+                Login
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to={'/sign-in'}>
+                Sign Up
+              </Link>
+            </li>
+          </>
+        )}
+        {user && user.hasOwnProperty('id') && (
+          <li className="nav-item">
+            <Link className="nav-link" to={'/StudentFeatures'}>
+              Features
+            </Link>
+          </li>
+        )}
+        {user && user.hasOwnProperty('ownerId') && (
+          <li className="nav-item">
+            <Link className="nav-link" to={'/OwnerFeatures'}>
+               Features
+            </Link>
+          </li>
+        )}
+      </ul>
+    </div>
+  </div>
+</nav>
 
-                                <li className="nav-item">
-                                    <Link className="nav-link" to={'/StudentFeatures'}>
-                                        Student Features
-                                    </Link>
-                                </li>
-
-                                <li className="nav-item">
-                                    <Link className="nav-link" to={'/OwnerFeatures'}>
-                                        Owner Features
-                                    </Link>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
                 <Routes>
                     <Route exact path="/" element={<HomePage />} />
                     <Route path="/sign-in" element={<Login />} />

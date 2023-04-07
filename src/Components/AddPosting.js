@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import apiClient from './apiClient';
 
 class AddPost extends React.Component {
