@@ -5,6 +5,8 @@ import './Preferences.css';
 import {Button, Card, Col, Container, Row} from "react-bootstrap";
 import apiClient from './apiClient';
 
+import { useNavigate } from 'react-router-dom';
+
 const options = [{value: 'Dalhousie University', label: 'Dalhousie University'}, {
     value: 'Saint Marys University', label: 'Saint Marys University'
 }, {
@@ -68,6 +70,7 @@ const nationalityOptions = [{value: 'South Asian', label: 'South Asian'},
     { value: 'European', label: 'European'},];
 
 function OwnerPreferences() {
+    const changePage=useNavigate();
     const [selectedOption1, setSelectedOption1] = useState(null);
     const [selectedOption2, setSelectedOption2] = useState(null);
     const [selectedOption3, setSelectedOption3] = useState(null);
@@ -152,25 +155,32 @@ function OwnerPreferences() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        
+        
         const queryParams = new URLSearchParams({
-          university: selectedOption1.value,
-          foodPreference: selectedOption2.value,
-          isSmoking: selectedOption3.value,
-          isDrinking: selectedOption4.value,
-          livingSpace: selectedOption5.value,
-          studyEnvironment: selectedOption6.value,
-          nationality: selectedOption7.value,
-        });
-      
+            university: selectedOption1.value,
+            foodPreference: selectedOption2.value,
+            isSmoking: selectedOption3.value,
+            isDrinking: selectedOption4.value,
+            livingSpace: selectedOption5.value,
+            studyEnvironment: selectedOption6.value,
+            nationality: selectedOption7.value,
+          });
+
         const authToken = localStorage.getItem("authToken");
         queryParams.append("authToken", authToken);
-      
+        console.log(queryParams.toString)
+
+
         apiClient
           .post("http://csci5308vm25.research.cs.dal.ca:8080/ownerpref/match?" + queryParams.toString())
           .then((response) => {
-            console.log(response.data);
-            localStorage.setItem("Owner_info", JSON.stringify(response.data));
-            window.location.href = "/DisplayStudentsAfterPref";
+            console.log(response.data);             
+            return response;
+            
+          })
+          .then((response)=>{
+            changePage('/DisplayStudentsAfterPref', { state: { ownersData: response.data } });
           })
           .catch((error) => {
             console.error(error);
