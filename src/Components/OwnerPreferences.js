@@ -113,7 +113,7 @@ function OwnerPreferences() {
 
     //      const authToken = localStorage.getItem('authToken');
     //      const queryParams = `?authToken=${authToken}`;
-    //      apiClient.post('http://localhost:8080/ownerpref/match${queryParams}',formData)
+    //      apiClient.post('http://csci5308vm25.research.cs.dal.ca:8080/ownerpref/match${queryParams}',formData)
     //       .then(response => {
     //         console.log(response.data);
     //           localStorage.setItem("Owner_info",JSON.stringify(response.data));
@@ -139,7 +139,7 @@ function OwnerPreferences() {
     //         Authorization: `Bearer ${authToken}`,
     //     };
     
-    //     apiClient.post('http://localhost:8080/ownerpref/match', formData, { headers })
+    //     apiClient.post('http://csci5308vm25.research.cs.dal.ca:8080/ownerpref/match', formData, { headers })
     //         .then(response => {
     //             console.log(response.data);
     //             localStorage.setItem("Owner_info", JSON.stringify(response.data));
@@ -166,7 +166,7 @@ function OwnerPreferences() {
         queryParams.append("authToken", authToken);
       
         apiClient
-          .post("http://localhost:8080/ownerpref/match?" + queryParams.toString())
+          .post("http://csci5308vm25.research.cs.dal.ca:8080/ownerpref/match?" + queryParams.toString())
           .then((response) => {
             console.log(response.data);
             localStorage.setItem("Owner_info", JSON.stringify(response.data));
@@ -182,7 +182,7 @@ function OwnerPreferences() {
     const [posts, setPosts] = React.useState([]);
 
     React.useEffect(() => {
-        apiClient.get('http://localhost:8080/posting/get/all', {
+        apiClient.get('http://csci5308vm25.research.cs.dal.ca:8080/posting/get/all', {
             image: posts.image,
             title: posts.title,
             description: posts.description,

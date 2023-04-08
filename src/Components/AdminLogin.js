@@ -19,7 +19,7 @@ const AdminLogin = () => {
             return;
         }
 
-        const url = `http://localhost:8080/Admin/login`;
+        const url = `http://csci5308vm25.research.cs.dal.ca:8080/Admin/login`;
 
         axios
             .post(url, {email, password})

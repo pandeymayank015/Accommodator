@@ -30,7 +30,7 @@ const Login = () => {
         
 
         const endpoint = userType === 'option1' ? 'student' : 'owner';
-        const url = `http://localhost:8080/${endpoint}/login`;
+        const url = `http://csci5308vm25.research.cs.dal.ca:8080/${endpoint}/login`;
 
         axios
             .post(url, { email, password })

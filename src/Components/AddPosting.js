@@ -53,9 +53,11 @@ class AddPost extends React.Component {
         const ownerId = user.ownerId;
       
         const { type, description, rent, address, pincode, category, email, image } = this.state;
-      
+        const currentDate = new Date();
+        const formattedDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`;
         const formData = new FormData();
         formData.append('type', type);
+        formData.append('date',formattedDate)
         formData.append('description', description);
         formData.append('rent', rent);
         formData.append('address', address);
@@ -65,7 +67,7 @@ class AddPost extends React.Component {
         formData.append('ownerId', ownerId);
         formData.append('image', image);
       
-        apiClient.post('http://localhost:8080/posting/create', formData, {
+        apiClient.post('http://csci5308vm25.research.cs.dal.ca:8080/posting/create', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }

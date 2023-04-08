@@ -10,7 +10,7 @@ function ShowFavorites() {
     React.useEffect(() => {
         const user = JSON.parse(localStorage.getItem('user'));
         const studentId = user.id;
-        apiClient.get(`http://localhost:8080/favorite/get/${studentId}`, {
+        apiClient.get(`http://csci5308vm25.research.cs.dal.ca:8080/favorite/get/${studentId}`, {
             image: posts.image,
             title: posts.title,
             description: posts.description,

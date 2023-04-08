@@ -28,10 +28,10 @@ function App() {
     const handleLogout = () => {
         localStorage.removeItem('user');
         if(user.hasOwnProperty('id')){
-            apiClient.post('http://localhost:8080/student/logout');
+            apiClient.post('http://csci5308vm25.research.cs.dal.ca:8080/student/logout');
         }
         else{
-            apiClient.post('http://localhost:8080/owner/logout');
+            apiClient.post('http://csci5308vm25.research.cs.dal.ca:8080/owner/logout');
         }
         window.location.href="/";
       };

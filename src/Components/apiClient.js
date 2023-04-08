@@ -5,7 +5,7 @@ import axios from 'axios';
 const getAuthToken = () => localStorage.getItem('authToken');
 
 const apiClient = axios.create({
-  baseURL: 'http://localhost:8080',
+  baseURL: 'http://csci5308vm25.research.cs.dal.ca:8080',
   headers: {
     'Content-Type': 'application/json',
   },

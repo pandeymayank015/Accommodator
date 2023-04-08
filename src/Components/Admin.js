@@ -20,7 +20,7 @@ function DataTable() {
 
     function loadData() {
         apiClient
-            .get('http://localhost:8080/student/get/all')
+            .get('http://csci5308vm25.research.cs.dal.ca:8080/student/get/all')
             .then((response) => {
                 setData(response.data);
                 setLoading(false);
@@ -33,7 +33,7 @@ function DataTable() {
 
     function handleApprove(studentId) {
         apiClient
-            .put(`http://localhost:8080/admin/approve/${studentId}`, { status: 'approved' })
+            .put(`http://csci5308vm25.research.cs.dal.ca:8080/admin/approve/${studentId}`, { status: 'approved' })
             .then((response) => {
                 loadData(); // Reload data after action
             })
@@ -44,7 +44,7 @@ function DataTable() {
 
     function handleReject(studentId) {
         apiClient
-            .put(`http://localhost:8080/admin/reject/${studentId}`, { status: 'rejected' })
+            .put(`http://csci5308vm25.research.cs.dal.ca:8080/admin/reject/${studentId}`, { status: 'rejected' })
             .then((response) => {
                 loadData(); // Reload data after action
             })

@@ -12,7 +12,7 @@ function ShowPosting() {
     const [posts, setPosts] = React.useState([]);
     const [originalPosts, setOriginalPosts] = React.useState([]);
     React.useEffect(() => {
-        apiClient.get('http://localhost:8080/posting/get/all', {
+        apiClient.get('http://csci5308vm25.research.cs.dal.ca:8080/posting/get/all', {
             image: posts.image,
             title: posts.title,
             description: posts.description,
@@ -36,7 +36,7 @@ function ShowPosting() {
 
   function addFavorites(postId) {
     const user = JSON.parse(localStorage.getItem('user'));
-         apiClient.post(`http://localhost:8080/favorite/create`,{studentId: user.id,postId: postId})
+         apiClient.post(`http://csci5308vm25.research.cs.dal.ca:8080/favorite/create`,{studentId: user.id,postId: postId})
   }
 
   function removeFavorites(postId) {
@@ -53,7 +53,7 @@ function ShowPosting() {
          setPosts(newPosts);
          if (newPosts[index].isFavorite) {
            const user = JSON.parse(localStorage.getItem('user'));
-                  apiClient.post(`http://localhost:8080/favorite/create`,{studentId: user.id,postId: postId})
+                  apiClient.post(`http://csci5308vm25.research.cs.dal.ca:8080/favorite/create`,{studentId: user.id,postId: postId})
          } else {
           // removeFavorites(postId);
          }
