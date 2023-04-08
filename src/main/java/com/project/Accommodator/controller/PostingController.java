@@ -1,4 +1,5 @@
 package com.project.Accommodator.controller;
+import com.project.Accommodator.model.PostRequestBody;
 import com.project.Accommodator.model.Posting;
 import com.project.Accommodator.service.PostingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class    PostingController {
     }
     @CrossOrigin
     @PostMapping("/create")
-    public Posting createPosting(@RequestBody Posting Posting) {
+    public Object createPosting(@ModelAttribute PostRequestBody Posting) {
         return PostingService.createPosting(Posting);
     }
     @CrossOrigin

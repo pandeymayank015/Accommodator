@@ -1,4 +1,5 @@
 package com.project.Accommodator.controller;
+import com.project.Accommodator.model.PostRequestBody;
 import com.project.Accommodator.model.Posting;
 import com.project.Accommodator.service.PostingService;
 import org.junit.jupiter.api.BeforeEach;
@@ -41,9 +42,9 @@ class PostingControllerTest {
 
     @Test
     public void testCreatePosting() throws Exception {
-        Posting expectedPosting = new Posting(1);
+        PostRequestBody expectedPosting = new PostRequestBody();
         when(postingServiceMock.createPosting(expectedPosting)).thenReturn(expectedPosting);
-        Posting actualPosting = postingControllerMock.createPosting(expectedPosting);
+        Object actualPosting = postingControllerMock.createPosting(expectedPosting);
         assertEquals(expectedPosting, actualPosting);
     }
     @Test
