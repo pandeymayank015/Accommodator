@@ -1,38 +1,20 @@
 package com.project.Accommodator.model;
 
-import java.util.Set;
-import jakarta.persistence.*;
 import org.springframework.web.multipart.MultipartFile;
 
-@Entity
-@Table(name="Posting")
-public class Posting {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer postId;
+public class PostRequestBody {
     private String rent;
     private String address;
     private String description;
     private String date;
     private String category;
-    private String image;
+    MultipartFile image;
     private String type;
     private String pincode;
     private String email;
     private Integer ownerId;
 
-//    @OneToMany(mappedBy = "posting", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    private Set<Favorite> favorites;
-
-    public Posting() {
-    }
-
-    public Posting(Integer postId) {
-        this.postId = postId;
-    }
-
-    public Posting(Integer postId, String rent, String address, String description, String date, String category, String image, String type, String pincode, String email, Integer ownerId) {
-        this.postId = postId;
+    public PostRequestBody(String rent, String address, String description, String date, String category, MultipartFile image, String type, String pincode, String email, Integer ownerId) {
         this.rent = rent;
         this.address = address;
         this.description = description;
@@ -45,12 +27,15 @@ public class Posting {
         this.ownerId = ownerId;
     }
 
-    public Integer getPostId() {
-        return postId;
+    public PostRequestBody() {
     }
 
-    public void setPostId(Integer postId) {
-        this.postId = postId;
+    public MultipartFile getImage() {
+        return image;
+    }
+
+    public void setImage(MultipartFile image) {
+        this.image = image;
     }
 
     public String getRent() {
@@ -91,14 +76,6 @@ public class Posting {
 
     public void setCategory(String category) {
         this.category = category;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
     public String getType() {
