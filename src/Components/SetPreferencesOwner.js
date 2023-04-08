@@ -113,7 +113,7 @@ function SetPreferencesOwner() {
             nationality: selectedOption7.value,
             ownerId: user.ownerId
           };
-          apiClient.post('http://localhost:8080/ownerpref/create', data)
+          apiClient.post('http://csci5308vm25.research.cs.dal.ca:8080/ownerpref/create', data)
             .then(response => {
               console.log(response.data);
               window.location.href = '/sign-up';

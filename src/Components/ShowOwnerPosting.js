@@ -10,7 +10,7 @@ function ShowOwnerPosting() {
     React.useEffect(() => {
         const user = JSON.parse(localStorage.getItem('user'));
         const studentId = user.ownerId;
-        apiClient.get(`http://localhost:8080/posting/get/${studentId}`, {
+        apiClient.get(`http://csci5308vm25.research.cs.dal.ca:8080/posting/get/${studentId}`, {
             image: posts.image,
             title: posts.title,
             description: posts.description,

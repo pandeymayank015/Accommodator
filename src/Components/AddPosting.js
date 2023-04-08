@@ -66,7 +66,7 @@ class AddPost extends React.Component {
             email: email,
           };
 
-                    apiClient.post('http://localhost:8080/posting/create', postingData).then((response) => {
+                    apiClient.post('http://csci5308vm25.research.cs.dal.ca:8080/posting/create', postingData).then((response) => {
                             if (response.status === 200) {
                                 window.location.href = '/OwnerFeatures';
                             } else {

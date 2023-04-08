@@ -111,7 +111,7 @@ function StudentPreferences() {
     //      formData.append('livingSpace', selectedOption5.value);
     //      formData.append('studyEnvironment', selectedOption6.value);
     //      formData.append('nationality', selectedOption7.value);
-    //     apiClient.post('http://localhost:8080/studentpref/match',formData)
+    //     apiClient.post('http://csci5308vm25.research.cs.dal.ca:8080/studentpref/match',formData)
     //       .then(response => {
     //         console.log(response.data);
     //         localStorage.setItem("Student_info",JSON.stringify(response.data));
@@ -138,7 +138,7 @@ function StudentPreferences() {
         queryParams.append("authToken", authToken);
       
         apiClient
-          .post("http://localhost:8080/studentpref/match?" + queryParams.toString())
+          .post("http://csci5308vm25.research.cs.dal.ca:8080/studentpref/match?" + queryParams.toString())
           .then((response) => {
             console.log(response.data);
             localStorage.setItem("Student_info", JSON.stringify(response.data));

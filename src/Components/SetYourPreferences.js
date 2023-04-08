@@ -113,7 +113,7 @@ function SetYourPreferences() {
             studentId: user.id
           };
           
-          apiClient.post('http://localhost:8080/studentpref/create', data)
+          apiClient.post('http://csci5308vm25.research.cs.dal.ca:8080/studentpref/create', data)
             .then(response => {
               console.log(response.data);
               window.location.href = '/sign-up';
