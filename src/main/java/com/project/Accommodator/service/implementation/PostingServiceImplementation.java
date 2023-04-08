@@ -59,7 +59,7 @@ public class PostingServiceImplementation implements PostingService {
                 stream.write(bytes);
                 stream.close();
 
-                post.setImage("http://localhost:8080//"+"./static/post_images/" + fileName);
+                post.setImage("http://csci5308vm25.research.cs.dal.ca/"+"/static/post_images/" + fileName);
                 post = PostingRepository.save(post);
 
                 return post;
