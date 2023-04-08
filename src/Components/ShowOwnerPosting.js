@@ -29,9 +29,6 @@ function ShowOwnerPosting() {
             });
     }, []);
 
-    function handleConnectClick(email) {
-        console.log('Contact with owner on ', email);
-    }
     return (
         <div className="auth-wrapper">
             <div className="form-container">
@@ -44,14 +41,13 @@ function ShowOwnerPosting() {
                                                 cards.push(
                                                     <Col key={i}>
                                                         <Card>
-                                                            <Card.Img variant="top" src={post.image} />
+                                                            <Card.Img variant="top" src="{post.image}" />
                                                             <Card.Body>
                                                                 <Card.Title>{post.title}</Card.Title>
                                                                 <Card.Text>{post.description}</Card.Text>
                                                                 <Card.Text>Rent: {post.rent}</Card.Text>
                                                                 <Card.Text>Address: {post.address}, {post.pincode}</Card.Text>
                                                                 <Card.Text>Category: {post.category}</Card.Text>
-                                                                <Button variant="primary" onClick={() => handleConnectClick(post.email)}>Connect with owner</Button>
                                                             </Card.Body>
                                                         </Card>
                                                     </Col>

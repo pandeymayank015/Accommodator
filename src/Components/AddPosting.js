@@ -35,9 +35,11 @@ class AddPost extends React.Component {
         const {name, value, files} = event.target;
         if (name === 'image') {
             if (!this.validateImages(files)) {
+                console.log('bye')
                 this.setState({error: 'Invalid file type. Please select images with .jpg, .jpeg, or .png extensions.'});
             } else {
-                this.setState({image: files, error: ''});
+                console.log('hi');
+                this.setState({image: files[0], error: ''});
             }
         } else {
             this.setState({[name]: value});
@@ -45,38 +47,41 @@ class AddPost extends React.Component {
     }
 
     handleSubmit(event) {
+        event.preventDefault();
+      
         const user = JSON.parse(localStorage.getItem('user'));
         const ownerId = user.ownerId;
-        event.preventDefault();
-        const {type, image, description, rent, address, pincode, category, email} = this.state;
-
-        // Get the current date
-        const currentDate = new Date();
-        const formattedDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`;
-        const postingData = {
-            rent: rent,
-            address: address,
-            description: description,
-            date: formattedDate,
-            category: category,
-            image: image.name,
-            ownerId: ownerId,
-            type: type,
-            pincode: pincode,
-            email: email,
-          };
-
-                    apiClient.post('http://localhost:8080/posting/create', postingData).then((response) => {
-                            if (response.status === 200) {
-                                window.location.href = '/OwnerFeatures';
-                            } else {
-                                console.error('Post creation failed:', response.data.message);
-                            }
-                        })
-                        .catch((error) => {
-                            console.error('An error occurred:', error);
-                        });
-                    }
+      
+        const { type, description, rent, address, pincode, category, email, image } = this.state;
+      
+        const formData = new FormData();
+        formData.append('type', type);
+        formData.append('description', description);
+        formData.append('rent', rent);
+        formData.append('address', address);
+        formData.append('pincode', pincode);
+        formData.append('category', category);
+        formData.append('email', email);
+        formData.append('ownerId', ownerId);
+        formData.append('image', image);
+      
+        apiClient.post('http://localhost:8080/posting/create', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        })
+          .then((response) => {
+            if (response.status === 200) {
+              window.location.href = '/OwnerFeatures';
+            } else {
+              console.error('Post creation failed:', response.data.message);
+            }
+          })
+          .catch((error) => {
+            console.error('An error occurred:', error);
+          });
+      }
+      
     render() {
         const { error } = this.state;
         return (
