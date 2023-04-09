@@ -15,7 +15,9 @@ public class Posting {
     private String description;
     private String date;
     private String category;
-    private String image;
+    //private String image;
+    @Lob
+    private byte[] image;
     private String type;
     private String pincode;
     private String email;
@@ -31,7 +33,7 @@ public class Posting {
         this.postId = postId;
     }
 
-    public Posting(Integer postId, String rent, String address, String description, String date, String category, String image, String type, String pincode, String email, Integer ownerId) {
+    public Posting(Integer postId, String rent, String address, String description, String date, String category, byte[] image, String type, String pincode, String email, Integer ownerId) {
         this.postId = postId;
         this.rent = rent;
         this.address = address;
@@ -93,11 +95,11 @@ public class Posting {
         this.category = category;
     }
 
-    public String getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(byte [] image) {
         this.image = image;
     }
 
