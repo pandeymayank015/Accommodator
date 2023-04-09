@@ -13,6 +13,11 @@ function DisplayPostingsAfterPref() {
 
     function handleConnectClick(email) {
         console.log('Contact with owner on ', email);
+        const subject = "Request for Accommodation";
+        const body = "I am interested in your posting posted in the Accommodator platform. Is it still available?";
+        const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = mailtoUrl;
+
     }
     return (
         <div className="auth-wrapper">

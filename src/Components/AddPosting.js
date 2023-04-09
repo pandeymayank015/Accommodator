@@ -141,6 +141,7 @@ class AddPost extends React.Component {
                                     id="rent"
                                     name="rent"
                                     onChange={this.handleChange}
+                                    maxLength="4"
                                     required
                                 />
                             </div>

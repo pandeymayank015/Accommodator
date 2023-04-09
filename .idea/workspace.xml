@@ -6,10 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="7b2a1d67-101f-41e5-ae51-6736dc6295db" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/StudentFeatures.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/StudentFeatures.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/AddPosting.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/AddPosting.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/DisplayPostingsAfterPref.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/DisplayPostingsAfterPref.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/DisplayStudentsAfterPref.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/DisplayStudentsAfterPref.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/ShowFavorites.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ShowFavorites.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,6 +87,7 @@
       <workItem from="1679939603980" duration="3703000" />
       <workItem from="1680401475860" duration="645000" />
       <workItem from="1680405487831" duration="1638000" />
+      <workItem from="1681076216364" duration="378000" />
     </task>
     <servers />
   </component>
