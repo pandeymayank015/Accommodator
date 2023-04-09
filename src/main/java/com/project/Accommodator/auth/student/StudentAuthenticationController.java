@@ -3,7 +3,9 @@ package com.project.Accommodator.auth.student;
 import com.project.Accommodator.config.student.StudentJwtService;
 import com.project.Accommodator.model.Student;
 import com.project.Accommodator.repository.StudentRepository;
+import com.project.Accommodator.service.StudentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,9 @@ import java.io.IOException;
 @CrossOrigin
 public class StudentAuthenticationController {
 
+
+  @Autowired
+  StudentService studentService;
 
   private final PasswordEncoder passwordEncoder;
   private final StudentJwtService jwtService;
@@ -67,6 +72,16 @@ public class StudentAuthenticationController {
       @RequestBody StudentAuthenticationRequest request
   ) {
     return ResponseEntity.ok(service.authenticate(request));
+  }
+
+  @GetMapping("/get/{id}")
+    public Student getStudentById(@PathVariable("id") int id) {
+        return studentService.getStudentById(id);
+    }
+  @CrossOrigin
+  @GetMapping("/get/all")
+  public Iterable<Student> getAllStudents() {
+    return studentService.getAllStudents();
   }
 
 
