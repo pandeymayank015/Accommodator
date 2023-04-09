@@ -36,14 +36,13 @@ public class OwnerJwtService {
       Map<String, Object> extraClaims,
       UserDetails userDetails
   ) {
-    return Jwts
-        .builder()
-        .setClaims(extraClaims)
-        .setSubject(userDetails.getUsername())
-        .setIssuedAt(new Date(System.currentTimeMillis()))
-        .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
-        .signWith(getSignInKey(), SignatureAlgorithm.HS256)
-        .compact();
+    var builder=Jwts.builder();
+    var setClaims=builder.setClaims(extraClaims);
+    var setSubject=setClaims.setSubject(userDetails.getUsername());
+    var setIssuedAt=setSubject.setIssuedAt(new Date(System.currentTimeMillis()));
+    var setExpiration=setIssuedAt.setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24));
+    var signWith=setExpiration.signWith(getSignInKey(), SignatureAlgorithm.HS256);
+    return signWith.compact();
   }
 
   public boolean isTokenValid(String token, UserDetails userDetails) {

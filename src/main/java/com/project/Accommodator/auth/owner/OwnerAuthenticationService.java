@@ -27,14 +27,19 @@ public class OwnerAuthenticationService {
   private AuthenticationManager authenticationManager;
 
   public OwnerAuthenticationResponse register(Owner request) {
-    var user = Owner.builder()
-        .firstName(request.getFirstName())
-        .lastName(request.getLastName())
-        .email(request.getEmail())
-            .contactNo(request.getContactNo())
-            .ownerType(request.getOwnerType())
-        .password(passwordEncoder.encode(request.getPassword()))
-        .build();
+
+
+    var userBuilder = Owner.builder();
+    var firstName=userBuilder.firstName(request.getFirstName());
+    var lastName=firstName.lastName(request.getLastName());
+    var email=lastName.email(request.getEmail());
+    var contact=email.contactNo(request.getContactNo());
+    var ownerType=contact.ownerType(request.getOwnerType());
+
+    var encodedPassword = ownerType.password(passwordEncoder.encode(request.getPassword()));
+    var user = encodedPassword.build();
+
+
     var savedUser = repository.save(user);
     var jwtToken = jwtService.generateToken(user);
     saveUserToken(savedUser, jwtToken);
@@ -65,14 +70,15 @@ public class OwnerAuthenticationService {
   }
 
   private void saveUserToken(Owner user, String jwtToken) {
-    var token = OwnerToken.builder()
-        .user(user)
-        .token(jwtToken)
-        .tokenType(TokenType.BEARER)
-        .expired(false)
-        .revoked(false)
-        .build();
-    tokenRepository.save(token);
+
+    var tokenBuilder = OwnerToken.builder();
+    var userData=tokenBuilder.user(user);
+    var tokenData=userData.token(jwtToken);
+    var tokenType=tokenData.tokenType(TokenType.BEARER);
+    var expired=tokenType.expired(false);
+    var revoked=expired.revoked(false);
+    var token=revoked.build();
+  tokenRepository.save(token);
   }
 
   private void revokeAllUserTokens(Owner user) {

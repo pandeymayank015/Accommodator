@@ -3,6 +3,7 @@ package com.project.Accommodator.auth.student;
 import com.project.Accommodator.config.student.StudentJwtService;
 import com.project.Accommodator.model.Student;
 import com.project.Accommodator.repository.StudentRepository;
+import com.project.Accommodator.token.owner.OwnerToken;
 import com.project.Accommodator.token.student.StudentToken;
 import com.project.Accommodator.token.student.StudentTokenRepository;
 import com.project.Accommodator.token.student.TokenType;
@@ -94,13 +95,13 @@ public class StudentAuthenticationService {
   }
 
   private void saveUserToken(Student user, String jwtToken) {
-    var token = StudentToken.builder()
-        .user(user)
-        .token(jwtToken)
-        .tokenType(TokenType.BEARER)
-        .expired(false)
-        .revoked(false)
-        .build();
+    var tokenBuilder = StudentToken.builder();
+    var userData=tokenBuilder.user(user);
+    var tokenData=userData.token(jwtToken);
+    var tokenType=tokenData.tokenType(TokenType.BEARER);
+    var expired=tokenType.expired(false);
+    var revoked=expired.revoked(false);
+    var token=revoked.build();
     tokenRepository.save(token);
   }
 

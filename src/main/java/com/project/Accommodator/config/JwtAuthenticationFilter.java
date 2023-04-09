@@ -68,7 +68,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                         .orElse(false);
             }
 
-            if ((studentJwtService.isTokenValid(jwt, userDetails) || ownerJwtService.isTokenValid(jwt, userDetails)) && isTokenValid) {
+
+            if (isJwtValid(jwt,userDetails) && isTokenValid) {
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         userDetails,
                         null,
@@ -89,4 +90,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
 
     }
+    public boolean isJwtValid(String jwt, UserDetails userDetails) {
+        return (studentJwtService.isTokenValid(jwt, userDetails) || ownerJwtService.isTokenValid(jwt, userDetails));
+    }
+
 }
