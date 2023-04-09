@@ -101,11 +101,15 @@ smells_job:
     - java -jar .gitlab/DesigniteJava.jar -i /builds/courses/2023-winter/csci-5308/group25 -o smells/ -d
     - cd smells/
     - ls -a
+  artifacts:
+    paths:
+      - smells/
+      - /builds/courses/2023-winter/csci-5308/group25
 
 issue-job:
   stage: issue
   dependencies:
-    - build-job
+    - smells_job
   image: "python:3.10"
   script:
     - ls smells/ -a
