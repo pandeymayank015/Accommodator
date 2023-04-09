@@ -18,7 +18,7 @@ function HomePage() {
             <Carousel.Item>
                 <img
                     className="d-block w-100 custom-img"
-                    src="https://hips.hearstapps.com/hmg-prod/images/house-exterior-1578084165.jpg"
+                    src="https://live.staticflickr.com/65535/51894671416_8912a155c7_b.jpg"
                     alt="Second slide"
                 />
                 <Carousel.Caption>
