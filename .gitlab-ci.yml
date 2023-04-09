@@ -95,6 +95,7 @@ smells_job:
   stage: smells
   image: openjdk:11
   script:
+    - pwd
     - echo "Start smells-job"
     - mkdir smells/
     - java -jar .gitlab/DesigniteJava.jar -i -o smells/ -d
