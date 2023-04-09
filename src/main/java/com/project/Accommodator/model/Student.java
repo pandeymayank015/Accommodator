@@ -1,5 +1,6 @@
 package com.project.Accommodator.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.Accommodator.token.student.StudentToken;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -35,6 +36,7 @@ public class Student implements UserDetails {
     private Long contactNo;
     private int isRevoked;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "user")
     private List<StudentToken> tokens;
 

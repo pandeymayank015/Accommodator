@@ -131,6 +131,16 @@ public class SecurityConfiguration {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
+                .requestMatchers("/admin/**") // Permit all URLs with /admin
+                .permitAll()
+                .requestMatchers("/Admin/**") // Permit all URLs with /admin
+                .permitAll()
+                .requestMatchers("/student/get/{id}")
+                .permitAll()
+                .requestMatchers("/adminHome")
+                .permitAll()
+                .requestMatchers("/student/get/all")
+                .permitAll()
                 .requestMatchers("/student/login", "/owner/login")
                 .permitAll()
                 .requestMatchers("/student/create", "/owner/create")
