@@ -102,6 +102,18 @@ smells_job:
     - cd smells/
     - ls -a
 
+issue-job:
+  stage: issue
+  dependencies:
+    - build-job
+  image: "python:3.10"
+  script:
+    - ls smells/ -a
+    - python --version
+    - pip install -r /builds/courses/2023-winter/csci-5308/group25/.gitlab/requirements.txt
+    - python /builds/courses/2023-winter/csci-5308/group25/.gitlab/issue.py $CI_COMMIT_SHA
+
+
 test:
   stage: test
   image: maven:3.8.7
