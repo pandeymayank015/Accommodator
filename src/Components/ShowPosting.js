@@ -157,7 +157,7 @@ function ShowPosting() {
                                                  <button className={isCardFavorite ? "favorite-button active" : "favorite-button"} onClick={() => addFavorites(post.postId,i)}>
                                                                                      <FiHeart className={isCardFavorite ? "icon active" : "icon"} />
                                                                                  </button>
-                                                    <Card.Img variant="top" src={post.image} />
+                                                    <Card.Img variant="top" src={`data:image/jpeg;base64,${post.image}`} />
                                                     <Card.Body>
                                                         <Card.Title>{post.title}</Card.Title>
                                                         <Card.Text>{post.description}</Card.Text>

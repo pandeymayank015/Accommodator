@@ -26,7 +26,7 @@ function DisplayPostingsAfterPref() {
                                                 cards.push(
                                                     <Col key={i}>
                                                         <Card>
-                                                            <Card.Img variant="top" src={post.image} />
+                                                            <Card.Img variant="top" src={`data:image/jpeg;base64,${post.image}`} />
                                                             <Card.Body>
                                                                 <Card.Title>{post.title}</Card.Title>
                                                                 <Card.Text>{post.description}</Card.Text>
