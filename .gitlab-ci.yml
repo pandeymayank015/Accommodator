@@ -77,19 +77,19 @@ variables:
   DOCKER_TLS_CERTDIR: "/certs"
   DOCKER_HOST: "unix:///var/run/docker.sock"
 
-# build:
-#   stage: build
-#   image: maven:3.8.7
-#   tags:
-#     - Asdc
-#   only:
-#     - JWT_Backend_Integration
-#   services:
-#     - name: docker:dind
-#       alias: docker
-#   script:
-#     - echo "Maven build started"
-#     - mvn compile
+build:
+  stage: build
+  image: maven:3.8.7
+  tags:
+    - Asdc
+  only:
+    - JWT_Backend_Integration
+  services:
+    - name: docker:dind
+      alias: docker
+  script:
+    - echo "Maven build started"
+    - mvn compile
 
 smells_job:
   stage: smells
