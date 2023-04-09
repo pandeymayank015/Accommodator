@@ -44,30 +44,6 @@ public class Student implements UserDetails {
     public Student() {
     }
 
-    public Student(int studentId, String firstName, String lastName, byte[] offerLetter, String email, String password, int isApproved, Long contactNo, int isRevoked) {
-        this.studentId = studentId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.offerLetter = offerLetter;
-        this.email = email;
-        this.password = password;
-        this.isApproved = isApproved;
-        this.contactNo = contactNo;
-        this.isRevoked = isRevoked;
-    }
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "studentId=" + studentId +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", isApproved=" + isApproved +
-                ", contactNo=" + contactNo +
-                ", isRevoked=" + isRevoked +
-                '}';
-    }
 
     public int getStudentId() {
         return studentId;

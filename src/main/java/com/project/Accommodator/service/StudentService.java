@@ -14,5 +14,5 @@ public interface StudentService {
     Iterable<Student> getAllStudents();
 
     Student createStudent(Student Student);
-    void createStudent(String firstName, String lastName, String email, String password, Long contactNo, MultipartFile pdfFile) throws IOException;
+
 }

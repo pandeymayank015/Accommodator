@@ -32,31 +32,11 @@ public class Owner implements UserDetails {
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "user")
     private List<OwnerToken> tokens;
 
-    public Owner(Integer ownerId, String email, String firstName, String lastName, String contactNo, String ownerType, String password) {
-        this.ownerId = ownerId;
-        this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.contactNo = contactNo;
-        this.ownerType = ownerType;
-        this.password = password;
-    }
 
     public Owner(int id) {
         this.ownerId = id;
     }
 
-    @Override
-    public String toString() {
-        return "Owner{" +
-                "ownerId=" + ownerId +
-                ", email='" + email + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", contactNo='" + contactNo + '\'' +
-                ", ownerType='" + ownerType + '\'' +
-                '}';
-    }
 
 
     public Integer getOwnerId() {

@@ -35,17 +35,6 @@ public class StudentServiceImplementation implements StudentService {
         return StudentRepository.save(Student);
     }
 
-    @Override
-    public void createStudent(String firstName, String lastName, String email, String password, Long contactNo, MultipartFile pdfFile) throws IOException {
-        Student student = new Student();
-        student.setFirstName(firstName);
-        student.setLastName(lastName);
-        student.setEmail(email);
-        student.setPassword(password);
-        student.setContactNo(contactNo);
-        student.setOfferLetter(pdfFile.getBytes());
-        StudentRepository.save(student);
-    }
 
     @Override
     public Optional<Student> loginStudent(String email, String password){
