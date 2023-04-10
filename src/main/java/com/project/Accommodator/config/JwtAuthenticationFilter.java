@@ -29,16 +29,16 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final OwnerJwtService ownerJwtService;
 
     @Autowired
-    private UserDetailsService studentUserDetailsService;
+    public UserDetailsService studentUserDetailsService;
 
     @Autowired
-    private UserDetailsService ownerUserDetailsService;
+    public UserDetailsService ownerUserDetailsService;
 
     private final StudentTokenRepository studentTokenRepository;
     private final OwnerTokenRepository ownerTokenRepository;
 
     @Override
-    protected void doFilterInternal(
+    public void doFilterInternal(
             @NonNull HttpServletRequest request,
             @NonNull HttpServletResponse response,
             @NonNull FilterChain filterChain

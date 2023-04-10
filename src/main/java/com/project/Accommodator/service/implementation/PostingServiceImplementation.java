@@ -17,6 +17,7 @@ import java.io.FileOutputStream;
 @Service
 public class PostingServiceImplementation implements PostingService {
     @Autowired
+    public
     PostingRepository postingRepository;
 
     public PostingServiceImplementation() {

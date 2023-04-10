@@ -30,23 +30,6 @@ public class StudentAuthenticationService {
   @Qualifier("studentAuthenticationManager")
   private AuthenticationManager authenticationManager;
 
-//  public StudentAuthenticationResponse register(Student request) {
-//    var user = Student.builder()
-//        .firstName(request.getFirstName())
-//        .lastName(request.getLastName())
-//        .email(request.getEmail())
-//            .contactNo(request.getContactNo())
-//            .offerLetter(request.getOfferLetter())
-//        .password(passwordEncoder.encode(request.getPassword()))
-//        .build();
-//    var savedUser = repository.save(user);
-//    var jwtToken = jwtService.generateToken(user);
-//    saveUserToken(savedUser, jwtToken);
-//    return StudentAuthenticationResponse.builder()
-//        .token(jwtToken)
-//        .build();
-//  }
-
   public StudentAuthenticationResponse register(MultipartHttpServletRequest request) throws IOException {
     var firstName = request.getParameter("firstName");
     var lastName = request.getParameter("lastName");
@@ -94,7 +77,7 @@ public class StudentAuthenticationService {
             .build();
   }
 
-  private void saveUserToken(Student user, String jwtToken) {
+  public void saveUserToken(Student user, String jwtToken) {
     var tokenBuilder = StudentToken.builder();
     var userData=tokenBuilder.user(user);
     var tokenData=userData.token(jwtToken);
