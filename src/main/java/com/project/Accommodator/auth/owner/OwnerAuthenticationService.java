@@ -26,6 +26,12 @@ public class OwnerAuthenticationService {
   @Qualifier("ownerAuthenticationManager")
   private AuthenticationManager authenticationManager;
 
+  /**
+
+   Registers a new owner by saving user data to the repository, generating a JWT token for the user, and saving the token to the token repository.
+   @param request the Owner object containing user data to be registered.
+   @return OwnerAuthenticationResponse containing the generated JWT token and owner information.
+   */
   public OwnerAuthenticationResponse register(Owner request) {
 
 
@@ -50,6 +56,12 @@ public class OwnerAuthenticationService {
             .build();
   }
 
+  /**
+
+   Authenticates an owner by verifying the user credentials, generating a new JWT token, and revoking all the valid tokens for the user.
+   @param request the OwnerAuthenticationRequest object containing the user credentials to be authenticated.
+   @return OwnerAuthenticationResponse containing the generated JWT token and owner information.
+   */
   public OwnerAuthenticationResponse authenticate(OwnerAuthenticationRequest request) {
     authenticationManager.authenticate(
         new UsernamePasswordAuthenticationToken(
@@ -69,6 +81,13 @@ public class OwnerAuthenticationService {
             .build();
   }
 
+  /**
+
+   Saves the user token to the token repository.
+   @param user the Owner object representing the user.
+   @param jwtToken the JWT token generated for the user.
+   */
+
   private void saveUserToken(Owner user, String jwtToken) {
 
     var tokenBuilder = OwnerToken.builder();
@@ -81,6 +100,11 @@ public class OwnerAuthenticationService {
   tokenRepository.save(token);
   }
 
+  /**
+   * Revokes all valid tokens associated with the given owner user by setting them as expired and revoked in the token repository.
+   *
+   * @param user the owner user whose tokens are to be revoked
+   */
   private void revokeAllUserTokens(Owner user) {
     var validUserTokens = tokenRepository.findAllValidTokenByUser(user.getOwnerId());
     if (validUserTokens.isEmpty())

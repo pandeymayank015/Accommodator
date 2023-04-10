@@ -29,6 +29,14 @@ public class StudentAuthenticationController {
   private final StudentRepository repository;
 
 
+  /**
+   * Handles HTTP POST requests to register a new student.
+   *
+   * @param request a multipart HTTP request containing student information including first name, last name, email,
+   *                password, contact number, and offer letter
+   * @return a HTTP response containing a {@code StudentAuthenticationResponse} object
+   * @throws IOException if an input/output error occurs
+   */
   @PostMapping("/create")
   public ResponseEntity<StudentAuthenticationResponse> register(MultipartHttpServletRequest request) throws IOException{
 
@@ -36,6 +44,12 @@ public class StudentAuthenticationController {
   }
 
 
+  /**
+   * Handles HTTP POST requests to authenticate a student.
+   *
+   * @param request a HTTP request containing student authentication information including email and password
+   * @return a HTTP response containing a {@code StudentAuthenticationResponse} object
+   */
   @PostMapping("/login")
   public ResponseEntity<StudentAuthenticationResponse> authenticate(
       @RequestBody StudentAuthenticationRequest request

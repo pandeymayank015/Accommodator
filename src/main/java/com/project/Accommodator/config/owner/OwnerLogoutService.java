@@ -9,12 +9,25 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.stereotype.Service;
 
+/**
+
+ Service class for handling owner logout functionality. Implements {@link org.springframework.security.web.authentication.logout.LogoutHandler}.
+ This service invalidates the JWT token of the owner user after logout by updating the corresponding record in the token repository.
+ */
 @Service
 @RequiredArgsConstructor
 public class OwnerLogoutService implements LogoutHandler {
 
   private final OwnerTokenRepository tokenRepository;
 
+  /**
+
+   Method that handles logout of owner user by invalidating the JWT token.
+   Extracts the JWT token from the Authorization header of the request and updates the corresponding record in the token repository.
+   @param request HTTP servlet request
+   @param response HTTP servlet response
+   @param authentication Authentication object representing the owner user's authentication information
+   */
   @Override
   public void logout(
       HttpServletRequest request,

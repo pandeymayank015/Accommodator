@@ -112,17 +112,48 @@ import java.util.Collections;
 @RequiredArgsConstructor
 public class SecurityConfiguration {
 
+    /**
+
+     The JWT authentication filter used to extract and validate JWT tokens from incoming requests.
+     */
     private final JwtAuthenticationFilter jwtAuthFilter;
+
+    /**
+
+     The authentication provider used to authenticate user credentials.
+     */
     private final AuthenticationProvider authenticationProvider;
 
+    /**
+
+     The logout handler used to logout student users.
+     */
     @Autowired
     @Qualifier("studentLogoutHandler")
     private LogoutHandler studentLogoutHandler;
 
+    /**
+
+     The logout handler used to logout owner users.
+     */
     @Autowired
     @Qualifier("ownerLogoutHandler")
     private LogoutHandler ownerLogoutHandler;
 
+    /**
+
+     This method configures the security filter chain for the application.
+
+     It configures the CORS policy, disables CSRF protection, defines the URL patterns to be allowed without authentication,
+
+     sets the authentication provider and JWT authentication filter, and sets up the logout process with its handlers.
+
+     @param http the HttpSecurity object used to configure the security
+
+     @return a SecurityFilterChain object representing the configured security filter chain
+
+     @throws Exception if an error occurs while configuring the security filter chain
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         var csrf= http

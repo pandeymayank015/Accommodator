@@ -14,8 +14,18 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 
+/**
+
+ Implementation of the PostingService interface that provides functionality to create and retrieve postings.
+ */
 @Service
 public class PostingServiceImplementation implements PostingService {
+
+
+    /**
+
+     Repository for managing postings.
+     */
     @Autowired
     public
     PostingRepository postingRepository;
@@ -53,12 +63,23 @@ public class PostingServiceImplementation implements PostingService {
         return post;
     }
 
+    /**
+
+     Retrieves postings associated with the given owner ID.
+     @param id The ID of the owner.
+     @return An iterable of postings associated with the given owner ID.
+     */
     @Override
     public Iterable<Posting> getPostingById(int id) {
         Iterable<Posting> Posting = postingRepository.getPostingById(id);
         return Posting;
     }
 
+    /**
+
+     Retrieves all postings in the repository.
+     @return An iterable of all postings in the repository.
+     */
     @Override
     public Iterable<Posting> getAllPosts() {
         Iterable<Posting> Posting = postingRepository.findAll();

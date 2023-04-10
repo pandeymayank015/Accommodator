@@ -6,6 +6,10 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 import java.util.Optional;
 
+/**
+
+ This interface extends the CrudRepository for the StudentToken model and defines custom methods for the StudentToken repository.
+ */
 public interface StudentTokenRepository extends CrudRepository<StudentToken, Integer> {
 
   @Query(value = """

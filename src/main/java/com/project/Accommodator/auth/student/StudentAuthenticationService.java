@@ -19,6 +19,11 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.io.IOException;
 
+/**
+
+ This class implements the authentication service for student users.
+ It provides functionality for user registration and authentication.
+ */
 @Service
 @RequiredArgsConstructor
 public class StudentAuthenticationService {
@@ -30,6 +35,13 @@ public class StudentAuthenticationService {
   @Qualifier("studentAuthenticationManager")
   private AuthenticationManager authenticationManager;
 
+  /**
+
+   Registers a new student with the given information.
+   @param request a multipart HTTP servlet request containing the student's first name, last name, email, password, contact number, and offer letter file
+   @return a StudentAuthenticationResponse object containing a JWT token and a StudentDto object representing the registered student
+   @throws IOException if there was an error reading the offer letter file
+   */
   public StudentAuthenticationResponse register(MultipartHttpServletRequest request) throws IOException {
     var firstName = request.getParameter("firstName");
     var lastName = request.getParameter("lastName");
@@ -58,6 +70,12 @@ public class StudentAuthenticationService {
             .build();
   }
 
+  /**
+
+   Authenticates a student with the given email and password.
+   @param request a StudentAuthenticationRequest object containing the email and password of the student to authenticate
+   @return a StudentAuthenticationResponse object containing a new JWT token and a StudentDto object representing the authenticated student
+   */
   public StudentAuthenticationResponse authenticate(StudentAuthenticationRequest request) {
     authenticationManager.authenticate(
         new UsernamePasswordAuthenticationToken(
@@ -77,6 +95,12 @@ public class StudentAuthenticationService {
             .build();
   }
 
+  /**
+
+   Saves a new student token for the given user and JWT token.
+   @param user the student for whom the token is being saved
+   @param jwtToken the JWT token being saved
+   */
   public void saveUserToken(Student user, String jwtToken) {
     var tokenBuilder = StudentToken.builder();
     var userData=tokenBuilder.user(user);
@@ -87,6 +111,12 @@ public class StudentAuthenticationService {
     var token=revoked.build();
     tokenRepository.save(token);
   }
+
+  /**
+
+   Revokes all valid tokens for the given student.
+   @param user the student for whom tokens are being revoked
+   */
 
   private void revokeAllUserTokens(Student user) {
     var validUserTokens = tokenRepository.findAllValidTokenByUser(user.getStudentId());

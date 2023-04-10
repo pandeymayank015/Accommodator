@@ -5,6 +5,9 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.Optional;
 
+/**
+ * The StudentService interface provides methods to create, retrieve and manage students.
+ */
 public interface StudentService {
 
     Student getStudentById(int id);

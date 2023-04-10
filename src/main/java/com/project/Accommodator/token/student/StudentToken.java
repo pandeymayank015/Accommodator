@@ -7,6 +7,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+
+ This class represents the authentication token for a student user.
+ It contains the token itself, its type, and the user it belongs to.
+ It also has fields to track if the token is revoked or expired.
+ */
 @Data
 @Builder
 @NoArgsConstructor

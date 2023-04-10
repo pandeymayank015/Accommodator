@@ -7,6 +7,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Represents a token for an owner, used for authentication.
+ */
 @Data
 @Builder
 @NoArgsConstructor

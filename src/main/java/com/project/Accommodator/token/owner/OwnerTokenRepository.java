@@ -7,6 +7,9 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Repository interface for managing OwnerToken entities.
+ */
 public interface OwnerTokenRepository extends CrudRepository<OwnerToken, Integer> {
 
   @Query(value = """

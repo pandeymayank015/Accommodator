@@ -9,12 +9,22 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.stereotype.Service;
 
+/**
+ * Service responsible for logging out a student user by revoking the JWT token and clearing the security context.
+ */
 @Service
 @RequiredArgsConstructor
 public class StudentLogoutService implements LogoutHandler {
 
   private final StudentTokenRepository tokenRepository;
 
+  /**
+   * Logs out the student user by revoking the JWT token and clearing the security context.
+   *
+   * @param request         the HTTP servlet request
+   * @param response        the HTTP servlet response
+   * @param authentication the authentication object representing the currently authenticated principal
+   */
   @Override
   public void logout(
       HttpServletRequest request,

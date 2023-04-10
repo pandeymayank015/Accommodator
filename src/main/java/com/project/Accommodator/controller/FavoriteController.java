@@ -4,10 +4,22 @@ import com.project.Accommodator.model.Posting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
+/**
+
+ This class represents the REST API endpoints for favorites.
+ */
 @CrossOrigin
 @RestController
 @RequestMapping("/favorite")
 public class FavoriteController {
+
+    /**
+
+     Retrieves the list of postings favorited by the given user ID.
+     @param id the ID of the user whose favorites should be retrieved
+     @return an Iterable of Posting objects representing the user's favorites
+     */
     @Autowired
     com.project.Accommodator.service.FavoriteService FavoriteService;
     @CrossOrigin
@@ -15,6 +27,12 @@ public class FavoriteController {
     public Iterable<Posting> getFavoriteById(@PathVariable("id") int id) {
         return FavoriteService.getFavoriteById(id);
     }
+    /**
+
+     Creates a new favorite for the given user.
+     @param
+     @return the created Favorite object
+     */
     @CrossOrigin
     @PostMapping("/create")
     public Favorite createFavorite(@RequestBody Favorite Favorite) {
