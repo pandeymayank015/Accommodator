@@ -4,12 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b2a1d67-101f-41e5-ae51-6736dc6295db" name="Changes" comment="">
+    <list default="true" id="7b2a1d67-101f-41e5-ae51-6736dc6295db" name="Changes" comment="Bug fix -Connect to Owner">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/AddPosting.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/AddPosting.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Admin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/AdminLogin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/AdminLogin.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/DisplayPostingsAfterPref.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/DisplayPostingsAfterPref.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/DisplayStudentsAfterPref.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/DisplayStudentsAfterPref.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/OwnerPreferences.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/OwnerPreferences.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Registration.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Registration.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/SetPreferencesOwner.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SetPreferencesOwner.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/SetYourPreferences.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SetYourPreferences.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/ShowFavorites.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ShowFavorites.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/ShowOwnerPosting.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ShowOwnerPosting.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/ShowPosting.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ShowPosting.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/StudentPreferences.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/StudentPreferences.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/apiClient.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/apiClient.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +75,12 @@
   }
 }</component>
   <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AccomodatorApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="Final" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.project.Accommodator.AccomodatorApplication" />
@@ -87,8 +105,16 @@
       <workItem from="1679939603980" duration="3703000" />
       <workItem from="1680401475860" duration="645000" />
       <workItem from="1680405487831" duration="1638000" />
-      <workItem from="1681076216364" duration="378000" />
+      <workItem from="1681076216364" duration="7904000" />
     </task>
+    <task id="LOCAL-00001" summary="Bug fix -Connect to Owner">
+      <created>1681076824180</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1681076824180</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -104,5 +130,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Bug fix -Connect to Owner" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug fix -Connect to Owner" />
   </component>
 </project>

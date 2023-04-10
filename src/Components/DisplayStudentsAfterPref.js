@@ -35,11 +35,11 @@ function DisplayStudentsAfterPref() {
                     for (let i = index; i < index + 3 && i < posts.length; i++) {
                         const post = posts[i];
                         cards.push(
-                            <Col key={i}>
-                                <Card>
+                            <Col key={i} xs={12} md={4}>
+                                <Card style={{ height: "100%" }}>
                                     <Card.Body>
-                                        <Card.Title>{post.firstName +" "+ post.lastName}</Card.Title>
-                                      <Card.Text>{post.email}</Card.Text>
+                                        <Card.Title className="card-text-height">{post.firstName +" "+ post.lastName}</Card.Title>
+                                      <Card.Text className="card-text-height">{post.email}</Card.Text>
                                         <Button variant="primary" onClick={() => handleConnectClick(post.email)}>Connect with student</Button>
                                     </Card.Body>
                                 </Card>

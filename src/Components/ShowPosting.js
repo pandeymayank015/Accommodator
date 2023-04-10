@@ -150,22 +150,41 @@ function ShowPosting() {
                                     const cards = [];
                                     for (let i = index; i < index + 3 && i < posts.length; i++) {
                                         const post = posts[i];
-                                           const isCardFavorite = post.isFavorite || false;
+                                        const isCardFavorite = post.isFavorite || false;
                                         cards.push(
-                                            <Col key={i}>
-                                                <Card>
-                                                 <button className={isCardFavorite ? "favorite-button active" : "favorite-button"} onClick={() => addFavorites(post.postId,i)}>
-                                                                                     <FiHeart className={isCardFavorite ? "icon active" : "icon"} />
-                                                                                 </button>
-                                                    <Card.Img variant="top" src={`data:image/jpeg;base64,${post.image}`} />
+                                            <Col key={i} xs={12} md={4}>
+                                                <Card style={{ height: "100%" }}>
+                                                    <button
+                                                        className={
+                                                            isCardFavorite ? "favorite-button active" : "favorite-button"
+                                                        }
+                                                        onClick={() => addFavorites(post.postId, i)}
+                                                    >
+                                                        <FiHeart
+                                                            className={isCardFavorite ? "icon active" : "icon"}
+                                                        />
+                                                    </button>
+                                                    <Card.Img
+                                                        variant="top"
+                                                        src={`data:image/jpeg;base64,${post.image}`}
+                                                        style={{ height: "200px", objectFit: "cover" }}
+                                                    />
                                                     <Card.Body>
                                                         <Card.Title>{post.title}</Card.Title>
-                                                        <Card.Text>{post.description}</Card.Text>
-                                                        <Card.Text>Rent: {post.rent}</Card.Text>
-                                                        <Card.Text>Address: {post.address}, {post.pincode}</Card.Text>
-                                                        <Card.Text>Category: {post.category}</Card.Text>
-                                                        <Button variant="primary" onClick={() => handleConnectClick(post.email)}>Connect with owner</Button>
+                                                        <Card.Text className="card-text-height">{post.description}</Card.Text>
+                                                        <Card.Text className="card-text-height">Rent: {post.rent}</Card.Text>
+                                                        <Card.Text className="card-text-height">
+                                                            Address: {post.address}, {post.pincode}
+                                                        </Card.Text>
+                                                        <Card.Text className="card-text-height">Category: {post.category}</Card.Text>
+                                                        <Button
+                                                            variant="primary"
+                                                            onClick={() => handleConnectClick(post.email)}
+                                                        >
+                                                            Connect with owner
+                                                        </Button>
                                                     </Card.Body>
+
                                                 </Card>
                                             </Col>
                                         );

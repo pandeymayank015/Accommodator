@@ -129,3 +129,8 @@ body, html, .App, #root, .auth-wrapper {
 .fa-heart {
   margin-right: 5px;
 }
+.card-text-height {
+  height: 50px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

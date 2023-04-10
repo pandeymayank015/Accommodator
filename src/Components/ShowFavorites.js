@@ -47,15 +47,15 @@ function ShowFavorites() {
                                             for (let i = index; i < index + 3 && i < posts.length; i++) {
                                                 const post = posts[i];
                                                 cards.push(
-                                                    <Col key={i}>
-                                                        <Card>
+                                                    <Col key={i} xs={12} md={4}>
+                                                        <Card style={{ height: "100%" }}>
                                                             <Card.Img variant="top" src={`data:image/jpeg;base64,${post.image}`} />
                                                             <Card.Body>
-                                                                <Card.Title>{post.title}</Card.Title>
-                                                                <Card.Text>{post.description}</Card.Text>
-                                                                <Card.Text>Rent: {post.rent}</Card.Text>
-                                                                <Card.Text>Address: {post.address}, {post.pincode}</Card.Text>
-                                                                <Card.Text>Category: {post.category}</Card.Text>
+                                                                <Card.Title  className="card-text-height">{post.title}</Card.Title>
+                                                                <Card.Text className="card-text-height">{post.description}</Card.Text>
+                                                                <Card.Text className="card-text-height">Rent: {post.rent}</Card.Text>
+                                                                <Card.Text className="card-text-height">Address: {post.address}, {post.pincode}</Card.Text>
+                                                                <Card.Text className="card-text-height">Category: {post.category}</Card.Text>
                                                                 <Button variant="primary" onClick={() => handleConnectClick(post.email)}>Connect with owner</Button>
                                                             </Card.Body>
                                                         </Card>
