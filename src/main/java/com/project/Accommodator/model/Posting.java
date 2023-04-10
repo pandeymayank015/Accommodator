@@ -23,6 +23,7 @@ public class Posting {
     private String email;
     private Integer ownerId;
 
+    //postings
     public Posting() {
     }
 
