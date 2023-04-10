@@ -19,18 +19,6 @@ public class OwnerPreferences {
     public OwnerPreferences() {
     }
 
-    public OwnerPreferences(int ownerPreferencesId, String university, String nationality, String food, String smokingPref, String drinkingPref, String livingPref, String studyPref, int ownerId) {
-        this.ownerPreferencesId = ownerPreferencesId;
-        this.university = university;
-        this.nationality = nationality;
-        this.food = food;
-        this.smokingPref = smokingPref;
-        this.drinkingPref = drinkingPref;
-        this.livingPref = livingPref;
-        this.studyPref = studyPref;
-        this.ownerId = ownerId;
-    }
-
     public OwnerPreferences(int id) {
         this.ownerPreferencesId = id;
     }

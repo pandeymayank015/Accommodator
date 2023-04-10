@@ -28,43 +28,12 @@ public class StudentAuthenticationController {
   private final StudentAuthenticationService service;
   private final StudentRepository repository;
 
-//  @PostMapping("/create")
-//  public ResponseEntity<StudentAuthenticationResponse> register(
-//      @RequestBody Student request
-//  ) {
-//    System.out.println("hello");
-//    return ResponseEntity.ok(service.register(request));
-//  }
 
   @PostMapping("/create")
   public ResponseEntity<StudentAuthenticationResponse> register(MultipartHttpServletRequest request) throws IOException{
 
     return ResponseEntity.ok(service.register(request));
   }
-//@PostMapping("/create")
-//public ResponseEntity<StudentAuthenticationResponse> register(MultipartHttpServletRequest request) throws IOException {
-//  var firstName = request.getParameter("firstName");
-//  var lastName = request.getParameter("lastName");
-//  var email = request.getParameter("email");
-//  var password = request.getParameter("password");
-//  var contactNo = Long.parseLong(request.getParameter("contactNo"));
-//  var offerLetter = request.getFile("offerLetter");
-//
-//  var user = Student.builder()
-//          .firstName(firstName)
-//          .lastName(lastName)
-//          .email(email)
-//          .contactNo(contactNo)
-//          .offerLetter(offerLetter.getBytes())
-//          .password(passwordEncoder.encode(password))
-//          .build();
-//  var savedUser = repository.save(user);
-//  var jwtToken = jwtService.generateToken(user);
-//  saveUserToken(savedUser, jwtToken);
-//  return ResponseEntity.ok(StudentAuthenticationResponse.builder()
-//          .token(jwtToken)
-//          .build());
-//}
 
 
   @PostMapping("/login")

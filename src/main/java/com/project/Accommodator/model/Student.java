@@ -40,9 +40,6 @@ public class Student implements UserDetails {
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "user")
     private List<StudentToken> tokens;
 
-//    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    private Set<Favorite> favorites;
-
     public Student() {
     }
 
@@ -51,33 +48,14 @@ public class Student implements UserDetails {
         return studentId;
     }
 
-    public void setStudentId(int studentId) {
-        this.studentId = studentId;
-    }
-
     public String getFirstName() {
         return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
     }
 
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public byte[] getOfferLetter() {
-        return offerLetter;
-    }
-
-    public void setOfferLetter(byte[] offerLetter) {
-        this.offerLetter = offerLetter;
-    }
 
     public String getEmail() {
         return email;
@@ -127,20 +105,8 @@ public class Student implements UserDetails {
         this.password = password;
     }
 
-    public int getIsApproved() {
-        return isApproved;
-    }
-
-    public void setIsApproved(int isApproved) {
-        this.isApproved = isApproved;
-    }
-
     public long getContactNo() {
         return contactNo;
-    }
-
-    public void setContactNo(long contactNo) {
-        this.contactNo = contactNo;
     }
 
 }

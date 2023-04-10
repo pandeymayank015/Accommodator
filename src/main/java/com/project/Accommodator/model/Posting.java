@@ -23,30 +23,12 @@ public class Posting {
     private String email;
     private Integer ownerId;
 
-//    @OneToMany(mappedBy = "posting", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    private Set<Favorite> favorites;
-
     public Posting() {
     }
 
     public Posting(Integer postId) {
         this.postId = postId;
     }
-
-    public Posting(Integer postId, String rent, String address, String description, String date, String category, byte[] image, String type, String pincode, String email, Integer ownerId) {
-        this.postId = postId;
-        this.rent = rent;
-        this.address = address;
-        this.description = description;
-        this.date = date;
-        this.category = category;
-        this.image = image;
-        this.type = type;
-        this.pincode = pincode;
-        this.email = email;
-        this.ownerId = ownerId;
-    }
-
     public Integer getPostId() {
         return postId;
     }
@@ -79,9 +61,6 @@ public class Posting {
         this.description = description;
     }
 
-    public String getDate() {
-        return date;
-    }
 
     public void setDate(String date) {
         this.date = date;
@@ -101,10 +80,6 @@ public class Posting {
 
     public void setImage(byte [] image) {
         this.image = image;
-    }
-
-    public String getType() {
-        return type;
     }
 
     public void setType(String type) {

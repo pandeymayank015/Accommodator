@@ -19,29 +19,8 @@ public class StudentPreferences {
     public StudentPreferences() {
     }
 
-    public StudentPreferences(int studentPreferencesId, String university, String nationality, String food, String smokingPref, String drinkingPref, String livingPref, String studyPref, String interests, int studentId) {
-        this.studentPreferencesId = studentPreferencesId;
-        this.university = university;
-        this.nationality = nationality;
-        this.food = food;
-        this.smokingPref = smokingPref;
-        this.drinkingPref = drinkingPref;
-        this.livingPref = livingPref;
-        this.studyPref = studyPref;
-        this.interests = interests;
-        this.studentId = studentId;
-    }
-
     public StudentPreferences(int id) {
         this.studentPreferencesId = id;
-    }
-
-    public int getStudentPreferencesId() {
-        return studentPreferencesId;
-    }
-
-    public void setStudentPreferencesId(int studentPreferencesId) {
-        this.studentPreferencesId = studentPreferencesId;
     }
 
     public String getUniversity() {

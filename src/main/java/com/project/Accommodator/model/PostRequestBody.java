@@ -14,18 +14,6 @@ public class PostRequestBody {
     private String email;
     private Integer ownerId;
 
-    public PostRequestBody(String rent, String address, String description, String date, String category, MultipartFile image, String type, String pincode, String email, Integer ownerId) {
-        this.rent = rent;
-        this.address = address;
-        this.description = description;
-        this.date = date;
-        this.category = category;
-        this.image = image;
-        this.type = type;
-        this.pincode = pincode;
-        this.email = email;
-        this.ownerId = ownerId;
-    }
 
     public PostRequestBody() {
     }

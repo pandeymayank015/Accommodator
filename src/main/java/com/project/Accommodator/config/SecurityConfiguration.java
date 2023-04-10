@@ -26,63 +26,63 @@
 //@RequiredArgsConstructor
 //public class SecurityConfiguration {
 //
-//    private final StudentJwtAuthenticationFilter studentJwtAuthFilter;
-//    private final OwnerJwtAuthenticationFilter ownerJwtAuthFilter;
-//    private final AuthenticationProvider authenticationProvider;
+// private final StudentJwtAuthenticationFilter studentJwtAuthFilter;
+// private final OwnerJwtAuthenticationFilter ownerJwtAuthFilter;
+// private final AuthenticationProvider authenticationProvider;
 //
-//    @Autowired
-//    @Qualifier("studentLogoutHandler")
-//    private LogoutHandler studentLogoutHandler;
+// @Autowired
+// @Qualifier("studentLogoutHandler")
+// private LogoutHandler studentLogoutHandler;
 //
-//    @Autowired
-//    @Qualifier("ownerLogoutHandler")
-//    private LogoutHandler ownerLogoutHandler;
+// @Autowired
+// @Qualifier("ownerLogoutHandler")
+// private LogoutHandler ownerLogoutHandler;
 //
-////    @Bean
-////    public CorsConfigurationSource corsConfigurationSource() {
-////        CorsConfiguration configuration = new CorsConfiguration();
-////        configuration.setAllowedOrigins(Collections.singletonList("*"));
-////        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-////        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
-////        configuration.setAllowCredentials(true);
+//// @Bean
+//// public CorsConfigurationSource corsConfigurationSource() {
+//// CorsConfiguration configuration = new CorsConfiguration();
+//// configuration.setAllowedOrigins(Collections.singletonList("*"));
+//// configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+//// configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
+//// configuration.setAllowCredentials(true);
 ////
-////        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-////        source.registerCorsConfiguration("/**", configuration);
+//// UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//// source.registerCorsConfiguration("/**", configuration);
 ////
-////        return source;
-////    }
+//// return source;
+//// }
 //
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        http
-//                .cors()
-//                .and()
-//                .csrf()
-//                .disable()
-//                .authorizeHttpRequests()
-//                .requestMatchers("/student/login", "/owner/login")
-//                .permitAll()
-//                .requestMatchers("/student/create", "/owner/create")
-//                .permitAll()
-//                .anyRequest()
-//                .authenticated()
-//                .and()
-//                .sessionManagement()
-//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                .and()
-//                .authenticationProvider(authenticationProvider)
-//                .addFilterBefore(studentJwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-//                .addFilterBefore(ownerJwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-//                .logout()
-//                .logoutUrl("/student/logout")
-//                .logoutUrl("/owner/logout")
-//                .addLogoutHandler(studentLogoutHandler)
-//                .addLogoutHandler(ownerLogoutHandler)
-//                .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext())
-//        ;
+// @Bean
+// public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+// http
+// .cors()
+// .and()
+// .csrf()
+// .disable()
+// .authorizeHttpRequests()
+// .requestMatchers("/student/login", "/owner/login")
+// .permitAll()
+// .requestMatchers("/student/create", "/owner/create")
+// .permitAll()
+// .anyRequest()
+// .authenticated()
+// .and()
+// .sessionManagement()
+// .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+// .and()
+// .authenticationProvider(authenticationProvider)
+// .addFilterBefore(studentJwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+// .addFilterBefore(ownerJwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+// .logout()
+// .logoutUrl("/student/logout")
+// .logoutUrl("/owner/logout")
+// .addLogoutHandler(studentLogoutHandler)
+// .addLogoutHandler(ownerLogoutHandler)
+// .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext())
+// ;
 //
-//        return http.build();
-//    }
+// return http.build();
+// }
 //}
 package com.project.Accommodator.config;
 
@@ -125,42 +125,31 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
+        var csrf= http
                 .cors()
                 .and()
-                .csrf()
-                .disable()
+                .csrf();
+        var permitAll=csrf.disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/admin/**") // Permit all URLs with /admin
-                .permitAll()
-                .requestMatchers("/Admin/**") // Permit all URLs with /admin
-                .permitAll()
-                .requestMatchers("/student/get/{id}")
-                .permitAll()
-                .requestMatchers("/adminHome")
-                .permitAll()
-                .requestMatchers("/student/get/all")
-                .permitAll()
                 .requestMatchers("/student/login", "/owner/login")
+                .permitAll();
+        var sessionManagement=permitAll.requestMatchers("/student/create", "/owner/create")
                 .permitAll()
-                .requestMatchers("/student/create", "/owner/create")
-                .permitAll()
-                .anyRequest()
-                .authenticated()
+                .anyRequest();
+        var authenticated= sessionManagement.authenticated()
                 .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .sessionManagement();
+        var logoutURL=authenticated.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .authenticationProvider(authenticationProvider)
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+                .authenticationProvider(authenticationProvider);
+        var addFilterBefore= logoutURL.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .logout()
-                .logoutUrl("/student/logout")
-                .logoutUrl("/owner/logout")
+                .logoutUrl("/student/logout");
+        var addLogoutHandler=addFilterBefore.logoutUrl("/owner/logout")
                 .addLogoutHandler(studentLogoutHandler)
-                .addLogoutHandler(ownerLogoutHandler)
-                .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext())
+                .addLogoutHandler(ownerLogoutHandler);
+        addLogoutHandler.logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext())
         ;
-
         return http.build();
     }
 }

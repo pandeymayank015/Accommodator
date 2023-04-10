@@ -43,11 +43,6 @@ public class Owner implements UserDetails {
         return ownerId;
     }
 
-    public void setOwnerId(Integer ownerId) {
-        this.ownerId = ownerId;
-    }
-
-
     public String getEmail() {
         return email;
     }
@@ -60,32 +55,16 @@ public class Owner implements UserDetails {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
     public String getLastName() {
         return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getContactNo() {
         return contactNo;
     }
 
-    public void setContactNo(String contactNo) {
-        this.contactNo = contactNo;
-    }
-
     public String getOwnerType() {
         return ownerType;
-    }
-
-    public void setOwnerType(String ownerType) {
-        this.ownerType = ownerType;
     }
 
     @Override
