@@ -1,0 +1,54 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: "/certs"
+  DOCKER_HOST: "unix:///var/run/docker.sock"
+
+build:
+  stage: build
+  image: node:16
+  tags:
+    - Asdc
+  only:
+    - JWT_Frontend_Integration
+  services:
+    - name: docker:dind
+      alias: docker
+  script:
+    - echo "Frontend build started"
+    - npm install --legacy-peer-deps
+    - npm run build
+
+deploy:
+  stage: deploy
+  image: docker:latest
+  tags:
+    - Asdc
+  environment:
+    name: development
+    url: http://csci5308vm25.research.cs.dal.ca:3000
+  only:
+    - JWT_Frontend_Integration
+  before_script:
+    - apk update && apk add openssh-client openssh-keygen
+    - mkdir -p /root
+    - mkdir -p /root/.ssh
+    - touch ~/.ssh/known_hosts
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > /root/.ssh/id_rsa
+    - chmod 600 /root/.ssh/id_rsa
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > /root/.ssh/config
+    - ssh-keyscan ${DEPLOY_SERVER} >> /root/.ssh/known_hosts || true
+
+  script:
+    - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_USER" --password-stdin
+    - docker build -t $DOCKER_HUB_USER/$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG .
+    - docker push $DOCKER_HUB_USER/$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+    - ssh csci5308vm25@${DEPLOY_SERVER} "docker login -u \"$DOCKER_HUB_USER\" -p \"$DOCKER_HUB_PASSWORD\""
+    - ssh csci5308vm25@${DEPLOY_SERVER} "docker pull $DOCKER_HUB_USER/$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+    - ssh csci5308vm25@${DEPLOY_SERVER} "docker stop app_frontend_container || true"
+    - ssh csci5308vm25@${DEPLOY_SERVER} "docker rm app_frontend_container || true"
+    - ssh csci5308vm25@${DEPLOY_SERVER} "docker run --name app_frontend_container -d -p 3000:3000 --restart always $DOCKER_HUB_USER/$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+
